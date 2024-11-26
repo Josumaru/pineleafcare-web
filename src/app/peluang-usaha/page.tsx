@@ -1,9 +1,16 @@
-import { NextPage } from 'next'
+import Header from "@/components/peluang-usaha/header/Header";
+import Kemitraan from "@/components/peluang-usaha/kemitraan/Kemitraan";
+import { NextPage } from 'next';
 
 interface Props {}
 
 const Page: NextPage<Props> = ({}) => {
-  return <div>Peluang Usaha</div>
+  return (
+    <>
+      <Header/>
+      <Kemitraan/>
+    </>
+  )
 }
 
 export default Page
