@@ -43,7 +43,7 @@ const Navbar = () => {
   }, []);
   const [currentPage, setCurrentPage] = useState("");
   return (
-    <div className="border-b border-b-white border-opacity-20 flex p-5 items-center justify-center z-50 duration-300 backdrop-blur-md">
+    <div className="border-b bg-transparent fixed top-0 w-full border-b-white border-opacity-20 flex p-5 items-center justify-center z-50 duration-300 backdrop-blur-md">
       <NavigationMenu className="max-w-7xl flex justify-between">
         <Image
           src={ImageConstants.pineleafLogo}
