@@ -1,9 +1,13 @@
-import { NextPage } from 'next'
+import Hero from "@/components/home/header/header";
+// import Slider from "@/components/home/slider/slider";
+// import Testimonials from "@/components/Testimonials";
 
-interface Props {}
-
-const Home: NextPage<Props> = ({}) => {
-  return <div>Home</div>
+export default function Home() {
+  return (
+    <>
+      <Hero />
+      {/* <Testimonials /> */}
+      {/* <Slider /> */}
+    </>
+  );
 }
-
-export default Home
