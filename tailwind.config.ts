@@ -53,6 +53,7 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         costumSilver: "#272727",
+        costumFontSilver : "#AEAEAE",
       },
       borderRadius: {
         lg: "var(--radius)",
