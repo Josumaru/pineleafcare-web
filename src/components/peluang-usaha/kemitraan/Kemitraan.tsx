@@ -7,7 +7,7 @@ const Kemitraan: NextPage = ({}) => {
             <div className="max-w-6xl mx-auto">
                 <div className="mb-5">
                     <div className="text-2xl font-bold opacity-50">KEMITRAAN</div>
-                    <div className="text-3xl font-extrabold"><GradientTitle text="MENGAPA PINELEAF?"/></div>
+                    <div className=""><GradientTitle text="MENGAPA PINELEAF?"/></div>
                 </div>
                 <p className=" text-white max-w-md mb-5 text">
                     Kami selalu mengedepankan inovasi dan konsisten dalam pengembangan produk dan pelayanan, terbukti sejak tahun 2015 hingga saat ini telah mencapai 300 outlet mitra di seluruh Indonesia.

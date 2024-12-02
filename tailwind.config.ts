@@ -54,6 +54,7 @@ const config = {
         },
         costumSilver: "#272727",
         costumFontSilver : "#AEAEAE",
+        costumBgCard : "#18181B",
       },
       borderRadius: {
         lg: "var(--radius)",
