@@ -42,11 +42,11 @@ const LokasiMitra: NextPage = () => {
   const [showCards, setShowCards] = useState(false);
 
   // Mendapatkan kota berdasarkan provinsi yang dipilih
-  const cities = selectedProvince ? allCities[selectedProvince] : [];
+  const cities = selectedProvince ? allCities[selectedProvince as keyof typeof allCities] : [];
 
   // Mendapatkan data kartu berdasarkan provinsi dan kota
   const cardData = selectedProvince && selectedCity
-    ? allCardData[selectedProvince][selectedCity]
+    ? allCardData[selectedProvince as keyof typeof allCities][selectedCity as keyof typeof allCardData[keyof typeof allCardData]]
     : Object.values(allCardData).flatMap(province => Object.values(province).flat()); // Menampilkan semua kartu jika tidak ada filter
 
   // Mengubah provinsi

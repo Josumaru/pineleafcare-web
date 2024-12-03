@@ -13,8 +13,12 @@ import {
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ImageConstants } from "@/constants/ImageConstants";
+import { createClient } from "@/utils/supabase/client";
+import { Button } from "@/components/ui/button";
+import { PlusIcon } from "lucide-react";
 
 const Navbar = () => {
+
   const pages = [
     {
       title: "Beranda",
@@ -70,6 +74,16 @@ const Navbar = () => {
               </NavigationMenuItem>
             );
           })}
+          <NavigationMenuItem>
+                <Link
+                  href={"/posting"}
+                >
+                  <Button className="bg-white hover:bg-gray-100 text-black h-8">
+                    <PlusIcon/>
+                    <span>Posting</span>
+                  </Button>
+                </Link>
+              </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </div>
