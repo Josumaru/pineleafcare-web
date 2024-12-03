@@ -46,7 +46,7 @@ const LokasiMitra: NextPage = () => {
 
   // Mendapatkan data kartu berdasarkan provinsi dan kota
   const cardData = selectedProvince && selectedCity
-    ? allCardData[selectedProvince as keyof typeof allCardData][selectedCity as keyof typeof allCardData[keyof typeof allCardData]]
+    ? allCardData[selectedProvince as keyof typeof allCities][selectedCity as keyof typeof allCardData[keyof typeof allCardData]]
     : Object.values(allCardData).flatMap(province => Object.values(province).flat()); // Menampilkan semua kartu jika tidak ada filter
 
   // Mengubah provinsi
