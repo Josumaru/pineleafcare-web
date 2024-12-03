@@ -1,6 +1,6 @@
+"use client";
 import { NextPage } from "next";
 import GradientTitle from "../common/GradientTitle";
-import { DocumentationImageConstants } from "@/constants/DocumentationImageConstants";
 import BlogTipsCard from "./BlogTipsCard";
 import {
   Pagination,
@@ -11,9 +11,22 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-interface Props {}
 
-const BlogTipsSection: NextPage<Props> = ({}) => {
+interface Blog {
+  blogs: {
+    title: string;
+    content: string;
+    image: string;
+    date: string;
+    category: string;
+    author: {
+      name: string;
+      image: string;
+    };
+  }[];
+}
+
+const BlogTipsSection: NextPage<Blog> = ({ blogs }) => {
   return (
     <div className="max-w-7xl w-screen pt-5">
       <GradientTitle text="Blog  dan Tips" />
@@ -41,7 +54,7 @@ const BlogTipsSection: NextPage<Props> = ({}) => {
           <BlogTipsCard data={data} key={index} />
         ))}
       </div>
-      <div className="mt-10">
+      {/* <div className="mt-10">
         <Pagination className="text-white">
           <PaginationContent>
             <PaginationItem>
@@ -66,202 +79,9 @@ const BlogTipsSection: NextPage<Props> = ({}) => {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-      </div>
+      </div> */}
     </div>
   );
 };
 
 export default BlogTipsSection;
-
-const blogs: {
-  title: string;
-  content: string;
-  image: string;
-  date: string;
-  category: string;
-  author: {
-    name: string;
-    image: string;
-  };
-}[] = [
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-  {
-    title: "The Impact of Pineleaf Shoes on Footwear",
-    content:
-      "Pineleaf shoes are a trend that has gained attention in recent years. They have a unique combination of comfort, durability, and style that makes them popular among consumers.",
-    image: DocumentationImageConstants[0].src,
-    date: "20 September 2024",
-    category: "Tips",
-    author: {
-      name: "Overlogic ID",
-      image: DocumentationImageConstants[0].src,
-    },
-  },
-];

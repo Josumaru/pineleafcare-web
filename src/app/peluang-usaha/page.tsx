@@ -8,12 +8,12 @@ interface Props {}
 
 const Page: NextPage<Props> = ({}) => {
   return (
-    <>
+    <div className="flex items-center justify-center flex-col">
       <Header/>
       <Kemitraan/>
       <PaketKemitraan/>
       <LokasiMitra/>
-    </>
+    </div>
   )
 }
 

@@ -42,9 +42,9 @@ const Footer: NextPage<Props> = ({}) => {
         <div className="w-1/3 pt-9">
           <p className="text-white font-bold">Berminat bermitra dengan Pineleaf Care ?</p>
           <div className="flex flex-col items-end">
-            <Input placeholder="Nama" className="bg-black mb-2 border-[#ABABAB] text-white"/>
-            <Input placeholder="Pesan" className="bg-black mb-2 border-[#ABABAB] text-white"/>
-            <Button variant={"outline"} className="bg-black  text-[#ABABAB] hover:bg-[#ABABAB] border-[#ABABAB]">Kirim</Button>
+            <Input placeholder="Nama" className="bg-black mb-2 border-gray-600 text-white"/>
+            <Input placeholder="Pesan" className="bg-black mb-2 border-gray-600 text-white"/>
+            <Button variant={"outline"} className=" bg-white w-full mt-2 hover:bg-gray-200 text-black">Kirim</Button>
           </div>
         </div>
       </div>
