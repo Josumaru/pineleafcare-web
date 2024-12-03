@@ -30,7 +30,7 @@ const BiayaSection: NextPage = () => {
         </div>
         <div className="flex items-center justify-center h-full p-28">
           <div
-            className="relative h-1 bg-gradient-to-r from-black via-white to-black w-[80%]"
+            className="relative h-[1px] bg-gradient-to-r from-black via-white to-black w-[80%]"
             style={{
               clipPath:
                 "polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%)", 
@@ -61,7 +61,7 @@ const BiayaSection: NextPage = () => {
         </div>
         <div className="flex items-center justify-center h-full p-28">
           <div
-            className="relative h-1 bg-gradient-to-r from-black via-white to-black w-[80%]"
+            className="relative h-[1px] bg-gradient-to-r from-black via-white to-black w-[80%]"
             style={{
               clipPath:
                 "polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%)", 
@@ -91,7 +91,7 @@ const BiayaSection: NextPage = () => {
         </div>
         <div className="flex items-center justify-center h-full p-28">
           <div
-            className="relative h-1 bg-gradient-to-r from-black via-white to-black w-[80%]"
+            className="relative h-[1px] bg-gradient-to-r from-black via-white to-black w-[80%]"
             style={{
               clipPath:
                 "polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%)", 
@@ -121,7 +121,7 @@ const BiayaSection: NextPage = () => {
         </div>
         <div className="flex items-center justify-center h-full p-28">
           <div
-            className="relative h-1 bg-gradient-to-r from-black via-white to-black w-[80%]"
+            className="relative h-[1px] bg-gradient-to-r from-black via-white to-black w-[80%]"
             style={{
               clipPath:
                 "polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%)", 
@@ -151,7 +151,7 @@ const BiayaSection: NextPage = () => {
         </div>
         <div className="flex items-center justify-center h-full p-28">
           <div
-            className="relative h-1 bg-gradient-to-r from-black via-white to-black w-[80%]"
+            className="relative h-[1px] bg-gradient-to-r from-black via-white to-black w-[80%]"
             style={{
               clipPath:
                 "polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%)", 

@@ -28,52 +28,58 @@ const Footer: NextPage<Props> = ({}) => {
           <div className="w-1/3 pt-9">
             <p className="text-white font-bold">Kontak</p>
             <div className="flex gap-1 pb-1 text-[#ABABAB]">
-              <Mail strokeWidth={1.5}/>
+              <Mail strokeWidth={1.5} />
               <p>pineleafcare@gmail.com</p>
             </div>
             <div className="flex gap-1 pb-1 text-[#ABABAB]">
-              <PhoneIcon strokeWidth={1.5}/>
+              <PhoneIcon strokeWidth={1.5} />
               <p>+62 858-6794-2389</p>
             </div>
             <div className="flex gap-1 pb-1 text-[#ABABAB]">
-              <Instagram strokeWidth={1.5}/>
+              <Instagram strokeWidth={1.5} />
               <p>@pineleaf</p>
             </div>
           </div>
           <div className="w-1/3 pt-9">
-            <p className="text-white font-bold">Berminat bermitra dengan Pineleaf Care ?</p>
+            <p className="text-white font-bold">
+              Berminat bermitra dengan Pineleaf Care ?
+            </p>
             <div className="flex flex-col items-end">
-              <Input placeholder="Nama" className="bg-black mb-2 border-[#ABABAB] text-white"/>
-              <Input placeholder="Pesan" className="bg-black mb-2 border-[#ABABAB] text-white"/>
-              <Button variant={"outline"} className="bg-black  text-[#ABABAB] hover:bg-[#ABABAB] border-[#ABABAB]">Kirim</Button>
+              <Input
+                placeholder="Nama"
+                className="bg-black mb-2 border-gray-600 text-white"
+              />
+              <Input
+                placeholder="Pesan"
+                className="bg-black mb-2 border-gray-600 text-white"
+              />
+              <Button
+                variant={"outline"}
+                className=" bg-white w-full mt-2 hover:bg-gray-200 text-black"
+              >
+                Kirim
+              </Button>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
 
       <div className="flex items-center justify-center">
         <div
-          className="relative h-1 bg-gradient-to-r from-black via-white to-black w-[80%]"
+          className="relative h-[1px] bg-gradient-to-r from-black via-white to-black w-[80%]"
           style={{
-            clipPath: "polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%)",
+            clipPath:
+              "polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%)",
           }}
-        ></div>
-        </div>
-        <div className="w-1/3 pt-9">
-          <p className="text-white font-bold">Berminat bermitra dengan Pineleaf Care ?</p>
-          <div className="flex flex-col items-end">
-            <Input placeholder="Nama" className="bg-black mb-2 border-gray-600 text-white"/>
-            <Input placeholder="Pesan" className="bg-black mb-2 border-gray-600 text-white"/>
-            <Button variant={"outline"} className=" bg-white w-full mt-2 hover:bg-gray-200 text-black">Kirim</Button>
-          </div>
-        </div>
-      </div>
-        
-      <div className="flex justify-between p-4 text-center text-[#ABABAB]">
-        <p>© 2024 Pineleaf Care All rights reserved.</p>
-        <p>Created by Overlogic ID</p>
+        />
       </div>
 
+      <div className="flex justify-center items-center w-full pt-5 pb-10 text-center text-[#ABABAB]">
+        <div className="max-w-7xl w-full flex items-center justify-between">
+          <p>© 2024 Pineleaf Care All rights reserved.</p>
+          <p>Created by Overlogic ID</p>
+        </div>
+      </div>
     </section>
   );
 };
