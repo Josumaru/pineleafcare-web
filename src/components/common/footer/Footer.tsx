@@ -58,6 +58,15 @@ const Footer: NextPage<Props> = ({}) => {
             clipPath: "polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%)",
           }}
         ></div>
+        </div>
+        <div className="w-1/3 pt-9">
+          <p className="text-white font-bold">Berminat bermitra dengan Pineleaf Care ?</p>
+          <div className="flex flex-col items-end">
+            <Input placeholder="Nama" className="bg-black mb-2 border-gray-600 text-white"/>
+            <Input placeholder="Pesan" className="bg-black mb-2 border-gray-600 text-white"/>
+            <Button variant={"outline"} className=" bg-white w-full mt-2 hover:bg-gray-200 text-black">Kirim</Button>
+          </div>
+        </div>
       </div>
         
       <div className="flex justify-between p-4 text-center text-[#ABABAB]">
