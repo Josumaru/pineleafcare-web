@@ -2,6 +2,7 @@
 import { NextPage } from "next";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { LucideSend } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 const ProductCategory: NextPage = () => {
@@ -30,14 +31,14 @@ const ProductCategory: NextPage = () => {
 
   return (
     <div className="ml-5">
-      <div className="text-white mt-20 font-thin">Produk Terbaik Dari Pineleaf</div>
+      <div className="text-white font-thin">Produk Terbaik Dari Pineleaf</div>
       <div className="flex gap-3">
         <div className="mt-4">
             <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+              <DropdownMenuTrigger asChild className="bg-black">
                 <Button className= "px-14 py-2 border-white text-white rounded-lg border">Pilih Kategori: {selectedCategory}</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-gray-800 text-white">
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-black text-white">
                 {categories.map((category, index) => (
                 <DropdownMenuItem
                     key={index}
@@ -46,24 +47,24 @@ const ProductCategory: NextPage = () => {
                     {category}
                 </DropdownMenuItem>
                 ))}
-            </DropdownMenuContent>
+              </DropdownMenuContent>
             </DropdownMenu>
         </div>
 
         {/* Dropdown untuk sorting harga */}
         <div className="mt-4">
             <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+              <DropdownMenuTrigger asChild className="bg-black">
                 <Button className="px-14 py-2 border-white text-white rounded-lg border">Urutkan Harga: {sortOrder === "termurah" ? "Termurah ke Termahal" : "Termahal ke Termurah"}</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-gray-800 text-white">
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-black text-white">
                 <DropdownMenuItem onClick={() => setSortOrder("termurah")}>
                 Termurah ke Termahal
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setSortOrder("termahal")}>
                 Termahal ke Termurah
                 </DropdownMenuItem>
-            </DropdownMenuContent>
+              </DropdownMenuContent>
             </DropdownMenu>
         </div>
       </div>
@@ -73,12 +74,21 @@ const ProductCategory: NextPage = () => {
       {/* Daftar produk */}
       <div className="mt-6">
         <div className="text-white text-lg font-semibold">Daftar Produk</div>
-        <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="grid grid-cols-3 gap-4 mt-4">
           {filteredProducts.map((product, index) => (
-            <div key={index} className="bg-gray-800 rounded-lg p-4">
+            <div key={index} className="bg-[#18181B] rounded-lg p-4 border border-[#7E7E7E]">
               <div className="text-white font-semibold">{product.name}</div>
-              <div className="text-gray-400 text-sm">{product.category}</div>
-              <div className="text-yellow-400 font-bold">Rp {product.price.toLocaleString()}</div>
+              <div className="text-white opacity-50 text-sm">{product.category}</div>
+              <div className="text-white font-bold text-center text-4xl">Rp {product.price.toLocaleString()}</div>
+              <div className="flex items-center justify-center">
+                <button className="flex items-center justify-between bg-costumBgCard text-white px-4 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
+                        <span className="mr-2">Beli Sekarang</span> 
+                        <span className=" bg-gray-700 rounded-full p-1">
+                            <LucideSend className="w-4 h-4"/>
+                        </span>
+                  </button>
+              </div>
+              
             </div>
           ))}
         </div>
