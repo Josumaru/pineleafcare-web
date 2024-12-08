@@ -16,12 +16,14 @@ const PaketKemitraan: NextPage = ({}) => {
                         <span className="relative align-top top-[-10px]">Rp </span>
                         200.000
                     </div>
-                    <button className="flex items-center justify-between bg-costumBgCard text-white px-4 ml-24 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
-                        <span className="mr-2">Konsultasi</span> 
-                        <span className=" bg-gray-700 rounded-full p-1">
-                            <LucideSend className="w-4 h-4"/>
-                        </span>
-                    </button>
+                    <div className="flex items-center justify-center">
+                        <button className="flex items-center justify-between bg-costumBgCard text-white px-4  mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
+                            <span className="mr-2">Konsultasi</span> 
+                            <span className=" bg-gray-700 rounded-full p-1">
+                                <LucideSend className="w-4 h-4"/>
+                            </span>
+                        </button>
+                    </div>
                 </div>
                 <div className="container bg-costumBgCard rounded-2xl border-gray-500 border max-w-sm">
                     <LucideTrendingUp className="my-5 ml-24 w-32 h-32"/>
@@ -31,12 +33,14 @@ const PaketKemitraan: NextPage = ({}) => {
                         <span className="relative align-top top-[-10px]">Rp </span>
                         200.000
                     </div>
-                    <button className="flex items-center justify-between bg-costumBgCard text-white px-4 ml-24 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
-                        <span className="mr-2">Konsultasi</span> 
-                        <span className=" bg-gray-700 rounded-full p-1">
-                            <LucideSend className="w-4 h-4"/>
-                        </span>
-                    </button>
+                    <div className="flex items-center justify-center">
+                        <button className="flex items-center justify-between bg-costumBgCard text-white px-4  mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
+                            <span className="mr-2">Konsultasi</span> 
+                            <span className=" bg-gray-700 rounded-full p-1">
+                                <LucideSend className="w-4 h-4"/>
+                            </span>
+                        </button>
+                    </div>
                 </div>
                 <div className="container bg-costumBgCard rounded-2xl border-gray-500 border max-w-sm">
                     <LucideCrown className="my-5 ml-24 w-32 h-32"/>
@@ -46,12 +50,15 @@ const PaketKemitraan: NextPage = ({}) => {
                         <span className="relative align-top top-[-10px]">Rp </span>
                         200.000
                     </div>
-                    <button className="flex items-center justify-between bg-costumBgCard text-white px-4 ml-24 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
-                        <span className="mr-2">Konsultasi</span> 
-                        <span className=" bg-gray-700 rounded-full p-1">
-                            <LucideSend className="w-4 h-4"/>
-                        </span>
-                    </button>
+                    <div className="flex items-center justify-center">
+                        <button className="flex items-center justify-between bg-costumBgCard text-white px-4  mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
+                            <span className="mr-2">Konsultasi</span> 
+                            <span className=" bg-gray-700 rounded-full p-1">
+                                <LucideSend className="w-4 h-4"/>
+                            </span>
+                        </button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
