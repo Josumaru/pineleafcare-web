@@ -1,12 +1,14 @@
-// Blog model
-
-export interface BlogModel {
+export interface Blog {
   id: string;
   title: string;
-  cover: string; // direct upload to blob storage
-  author: string;
-  category: any;
   content: string;
-  createdAt: Date;
-  updatedAt: Date;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+  userId: string;
+  category: string;
+  author: {
+    name: string;
+    image: string;
+  };
 }

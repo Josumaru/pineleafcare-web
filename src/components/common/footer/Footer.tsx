@@ -11,7 +11,7 @@ interface Props {}
 const Footer: NextPage<Props> = ({}) => {
   return (
     <section>
-      <div className="flex items-center justify-center w-full mt-10 border-b pb-5 border-white border-opacity-20 pt-10">
+      <div className="flex items-center justify-center w-full mt-10 pb-5 border-white border-opacity-20 pt-10">
         <div className="max-w-7xl flex justify-beetween w-full">
           <div className="w-1/2">
             <Image
