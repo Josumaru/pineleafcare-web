@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { LucideSend } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import { ImageConstants } from "@/constants/ImageConstants";
 
 const ProductCategory: NextPage = () => {
   // Daftar kategori
@@ -11,11 +13,11 @@ const ProductCategory: NextPage = () => {
   
   // Produk contoh dengan harga
   const products = [
-    { name: "Produk A", category: "Sepatu Pria", price: 150000 },
-    { name: "Produk B", category: "Perawatan & Kecantikan", price: 50000 },
-    { name: "Produk C", category: "Tas Wanita", price: 250000 },
-    { name: "Produk D", category: "Sepatu Wanita", price: 100000 },
-    { name: "Produk E", category: "Perlengkapan Rumah", price: 75000 },
+    { name: "Pineleaf Anti Jamur dan 100 ml canvas", category: "Sepatu Pria", price: 80000,img: ImageConstants.product1 },
+    { name: "Shoes Cleaner Pineleaf Economic", category: "Sepatu Pria", price: 60000,img: ImageConstants.product2},
+    { name: "Pineleaf Economic 1 Liter Apple Scent", category: "Sepatu Pria", price: 200000,img: ImageConstants.product3},
+    { name: "Pineleaf Shoes Cleaner", category: "Sepatu Wanita", price: 95200,img: ImageConstants.product4 },
+    { name: "Pineleaf Shoes Cleaner for Black Shoes", category: "Sepatu Wanita", price: 80000, img:ImageConstants.product5 },
   ];
 
   // State untuk dropdown
@@ -28,7 +30,13 @@ const ProductCategory: NextPage = () => {
       selectedCategory === "Semua Produk" || product.category === selectedCategory
     )
     .sort((a, b) => (sortOrder === "termurah" ? a.price - b.price : b.price - a.price));
-
+  const formatCurrency = (price:number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(price);
+  }
   return (
     <div className="ml-5">
       <div className="text-white font-thin">Produk Terbaik Dari Pineleaf</div>
@@ -77,9 +85,14 @@ const ProductCategory: NextPage = () => {
         <div className="grid grid-cols-3 gap-4 mt-4">
           {filteredProducts.map((product, index) => (
             <div key={index} className="bg-[#18181B] rounded-lg p-4 border border-[#7E7E7E]">
+              <Image
+                src={product.img}
+                alt="product"
+
+              />
               <div className="text-white font-semibold">{product.name}</div>
               <div className="text-white opacity-50 text-sm">{product.category}</div>
-              <div className="text-white font-bold text-center text-4xl">Rp {product.price.toLocaleString()}</div>
+              <div className="text-white font-bold text-center text-4xl">{formatCurrency(product.price)}</div>
               <div className="flex items-center justify-center">
                 <button className="flex items-center justify-between bg-costumBgCard text-white px-4 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
                         <span className="mr-2">Beli Sekarang</span> 
@@ -88,7 +101,6 @@ const ProductCategory: NextPage = () => {
                         </span>
                   </button>
               </div>
-              
             </div>
           ))}
         </div>
