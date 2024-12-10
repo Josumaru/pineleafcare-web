@@ -57,7 +57,7 @@ const Page: NextPage<Props> = ({ params }) => {
                 height={1080}
                 className="w-full h-[450px] rounded-3xl object-cover"
               />
-              <div className="m-5 absolute top-0 flex items-center justify-center gap-2 shadow-xl">
+              <div className="m-5 absolute top-0 flex items-center justify-center gap-2 drop-shadow-md shadow-black">
                 <Avatar className="">
                   <AvatarImage
                     src={data?.author?.image}

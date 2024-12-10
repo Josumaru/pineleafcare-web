@@ -24,20 +24,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/initialName";
+import Leading from "./Leading";
 const Navbar = async () => {
   const user = await getUser();
 
   return (
     <div className="border-b bg-transparent fixed top-0 w-full border-b-white border-opacity-20 flex p-5 items-center justify-center z-50 duration-300 backdrop-blur-md">
       <NavigationMenu className="max-w-7xl flex justify-between">
-        <Link href={"/beranda"}>
-          <Image
-            src={ImageConstants.pineleafLogo}
-            className="hover:cursor-pointer"
-            alt="Pineleaf Logo"
-            height={32}
-          />
-        </Link>
+        <div className="hidden lg:block">
+          <Leading />
+        </div>
         <NavigationMenuList>
           <NavbarMenu />
         </NavigationMenuList>

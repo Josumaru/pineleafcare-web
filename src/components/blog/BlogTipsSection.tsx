@@ -26,7 +26,7 @@ const BlogTipsSection: NextPage<BlogProps> = ({ blogs }) => {
         yang dapat memberi Anda wawasan.
       </p>
       <div className="mt-1 gap-1 flex">
-        <div className="w-20 p-1 rounded-xl bg-white flex items-center justify-center">
+        <div className="w-20 p-1 rounded-xl bg-white text-black flex items-center justify-center">
           Semua
         </div>
         {["Artikel", "Tips", "Berita"].map((category, index) => {

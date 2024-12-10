@@ -1,15 +1,13 @@
 import { getUser } from "@/components/common/navbar/action";
 import BlogTipsPengguna from "@/components/pengguna/BlogTipsPengguna";
 import { IconConstants } from "@/constants/IconConstants";
-import { NextPage } from "next";
 import Image from "next/image";
 
 import UpdateNameProfile from "@/components/pengguna/UpdateNameProfile";
 import UpdateBannerProfile from "@/components/pengguna/UpdateBannerProfile";
 import UpdateImageProfile from "@/components/pengguna/UpdateImageProfile";
-interface Props {}
 
-const Page: NextPage<Props> = async ({}) => {
+const Page = async ({}) => {
   const user = await getUser();
 
   return (
