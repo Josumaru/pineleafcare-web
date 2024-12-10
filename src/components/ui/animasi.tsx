@@ -39,33 +39,39 @@ export const AnimatedTestimonials = ({
               initial={{
                 opacity: 0,
                 scale: 0.9,
-                rotate: 0, // Rotasi awal
+                rotate: 0, 
+                x: -100,
+                y: 50,
               }}
               animate={{
                 opacity: index === active ? 1 : 0,
-                scale: index === active ? 1 : 0.9,
-                rotate: index === active ? 30 : 0, // Rotasi 10 derajat ke kanan untuk gambar aktif
+                scale: index === active ? 2 : 0.9,
+                rotate: index === active ? 40 : 0, 
+                x: 0,
+                y: 0,
               }}
               exit={{
                 opacity: 0,
                 scale: 0.9,
-                rotate: 0, // Rotasi kembali ke posisi awal saat keluar
+                rotate: 0, 
+                x: 100,
+                y: -50,
               }}
               transition={{
                 duration: 0.4,
                 ease: "easeInOut",
               }}
               className={`absolute inset-0 origin-bottom ${
-                index === active ? "block" : "opacity-0 pointer-events-none" // Hanya menampilkan gambar aktif
+                index === active ? "block" : "opacity-0 pointer-events-none" 
               }`}
             >
               <Image
                 src={testimonial.src}
                 alt={`Testimonial Image ${index}`}
-                width={500}
-                height={500}
+                width={1000}
+                height={1000}
                 draggable={false}
-                className="h-full w-full rounded-3xl object-cover object-center"
+                className="h-full w-full rounded-3xl object-cover object-center transform -translate-x-10 translate-y-20" // Menambahkan pergeseran gambar
               />
             </motion.div>
           ))}
