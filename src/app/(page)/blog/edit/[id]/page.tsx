@@ -24,8 +24,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { NextPage } from "next";
 
-const Page = () => {
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+const Page: NextPage<Props> = ({ params }) => {
   const [title, setTitle] = useState<string | null>(null);
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -33,13 +38,47 @@ const Page = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [value, setValue] = useState<Content>("");
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    console.log(value?.toString());
-  }, [value]);
-
+  const [id, setId] = useState<string | null>(null);
   const router = useRouter();
   const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchId = async () => {
+      const id = (await params).id;
+      setId(id);
+    };
+    fetchId();
+  }, [params]);
+
+  useEffect(() => {
+    if (id) {
+      const fetchBlog = async () => {
+        const res = await fetch(`/api/get-blog?id=${id}`);
+        if (res.ok) {
+          const data = await res.json();
+          const response = await fetch(data.image);
+          const blob = await response.blob();
+
+          // Konversi Blob ke File
+          const file = new File([blob], data.image.split("/").pop(), { type: blob.type });
+          setTitle(data.title);
+          setValue(data.content);
+          setCategory(data.category);
+          setImage(file);
+          setImagePreview(data.image);
+        } else {
+          toast({
+            title: "Blog Tidak Ditemukan",
+            description: "ID blog yang Anda cari tidak ditemukan",
+            variant: "destructive",
+            action: <ToastAction altText="Oke">Oke</ToastAction>,
+          });
+        }
+      };
+      fetchBlog();
+    }
+  }, [id]);
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedImage = e.target.files[0];
@@ -79,20 +118,26 @@ const Page = () => {
 
     try {
       const formData = new FormData();
-
       formData.append("content", value?.toString() ?? "");
       formData.append("title", title ?? "Tidak ada Judul");
       formData.append("category", category ?? "Teknologi");
+      formData.append("blogId", id ?? "");
       if (image) {
         formData.append("image", image);
       }
 
-      const res = await fetch("/api/add-blog", {
-        method: "POST",
+      const res = await fetch("/api/update-blog", {
+        method: "PUT",
         body: formData,
       });
 
-      if (res.status === 201) {
+      if (res.status === 200) {
+        toast({
+            title: "Berhasil",
+            description: "blog berhasil diperbarui",
+            variant: "default",
+            action: <ToastAction altText="Oke">Oke</ToastAction>,
+          });
         router.push("/blog");
       } else {
         toast({
@@ -103,7 +148,6 @@ const Page = () => {
         });
       }
     } catch (err) {
-      console.error(err);
       setLoading(false);
     }
     setLoading(false);
@@ -125,10 +169,40 @@ const Page = () => {
     "Kesehatan",
   ];
 
+  if (
+    image == null ||
+    imagePreview == null ||
+    category == null ||
+    value == null
+  ) {
+    return (
+      <div className="w-full text-white flex items-center justify-center h-screen">
+        <svg
+          aria-hidden="true"
+          role="status"
+          className="inline w-4 h-4 me-3 text-black animate-spin"
+          viewBox="0 0 100 101"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+            fill="#E5E7EB"
+          />
+          <path
+            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+            fill="currentColor"
+          />
+        </svg>
+        Memuat
+      </div>
+    );
+  }
+
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center flex-1 justify-center">
       <form
-        className="pt-10 mt-20 max-w-7xl w-full"
+        className="p-10 max-w-7xl w-full"
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -222,8 +296,10 @@ const Page = () => {
         </Popover>
         <MinimalTiptapEditor
           value={value}
+          content={value}
+          immediatelyRender={false}
           onChange={setValue}
-          className="w-full focus-within:border-input"
+          className="w-full max-w-7xl focus-within:border-input"
           editorContentClassName="p-5"
           output="html"
           placeholder="Tulis deskripsimu disini"
@@ -236,7 +312,7 @@ const Page = () => {
           disabled={loading}
           className="px-6 mt-5 py-3 bg-white hover:bg-gray-50 text-black rounded"
         >
-          Posting
+          Simpan
         </Button>
       </form>
       <div

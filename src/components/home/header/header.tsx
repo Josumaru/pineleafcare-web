@@ -20,9 +20,9 @@ const HeaderWithTestimonials: NextPage = ({}) => {
   return (
     <section className="bg-black text-white py-16 max-w-7xl">
       {/* Header Section */}
-      <div className="container flex flex-col lg:flex-row items-center justify-between pt-10">
-        <div className="lg:w-1/2 flex flex-col items-start justify-start text-center lg:text-left space-y-6">
-          <h1 className="text-5xl font-extrabold bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text">
+      <div className="flex flex-col lg:flex-row items-center justify-between pt-10">
+        <div className="w-full xl:w-1/2 flex flex-col items-start justify-start text-center lg:text-left space-y-6">
+          <h1 className="md:text-4xl text-3xl lg:text-5xl font-extrabold bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text">
             Perawatan Terbaik untuk Sepatu, Tas, & Apparel Anda
           </h1>
           <p className="text-gray-400 text-lg lg:text-xl">
@@ -30,14 +30,14 @@ const HeaderWithTestimonials: NextPage = ({}) => {
             sejak tahun 2015 hingga saat ini telah mencapai 300 outlet mitra di seluruh Indonesia. <br />
             Pionir Solusi terbaik untuk kebutuhan perawatan sepatu, tas & stroller di Indonesia.
           </p>
-          <button className="p-1 border-2 bg-[#27272a] border-gray-600  text-white-500 rounded-full flex items-center space-x-2">
+          <a href='https://wa.me/6285867942389' target='_blank'  className="p-1 border-2 bg-[#27272a] border-gray-600  text-white-500 rounded-full flex items-center space-x-2">
             <span className='pr-10 pl-2'>Info Lebih Lanjut</span>
             <div className='bg-[#3f3f46] p-2 px-5 rounded-full'><Send></Send></div>
-          </button>
+          </a>
         </div>
 
         {/* Gambar testimonial dengan rotasi dan animasi */}
-        <div className="lg:w-1/2 flex justify-center mt-8 lg:mt-0 relative">
+        <div className="lg:w-1/2 justify-center mt-8 lg:mt-0 relative hidden xl:flex">
           <div className="relative z-10 w-full h-auto">
             <Spotlight className="absolute inset-0 z-0 scale-110" fill="white" />
             {/* Memasukkan komponen AnimatedTestimonials */}
@@ -47,7 +47,7 @@ const HeaderWithTestimonials: NextPage = ({}) => {
       </div>
 
       {/* Statistics Section */}
-      <div className="container mx-auto mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 text-center">
+      <div className="mx-auto mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 text-center">
         <div className='flex flex-col items-start justify-start'>
           <h3 className="text-3xl font-bold text-white-500">300+</h3>
           <p className="text-gray-400 text-start">

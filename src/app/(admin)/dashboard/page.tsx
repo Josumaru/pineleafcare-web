@@ -1,18 +1,15 @@
-import { NextPage } from 'next'
+import { redirect } from "next/navigation";
 
-interface Props {}
-import { redirect } from 'next/navigation'
+import { createClient } from "@/utils/supabase/server";
 
-import { createClient } from '@/utils/supabase/server'
+const Page = async ({}) => {
+  const supabase = await createClient();
 
-const Page: NextPage<Props> = async ({}) => {
-    const supabase = await createClient()
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    redirect("/login");
+  }
+  redirect("/dashboard/blog");
+};
 
-    const { data, error } = await supabase.auth.getUser()
-    if (error || !data?.user) {
-      redirect('/login')
-    }
-  redirect('/dashboard/blog')
-}
-
-export default Page
+export default Page;

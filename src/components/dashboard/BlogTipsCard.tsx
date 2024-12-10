@@ -24,9 +24,10 @@ import { ToastAction } from "../ui/toast";
 import { useToast } from "@/hooks/use-toast";
 interface Props {
   blog: Blog;
+  editUrl?: string;
 }
 
-const BlogTipsCard: NextPage<Props> = ({ blog }) => {
+const BlogTipsCard: NextPage<Props> = ({ blog, editUrl = "/dashboard/blog" }) => {
   const date = new Date(blog.createdAt);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -39,7 +40,7 @@ const BlogTipsCard: NextPage<Props> = ({ blog }) => {
   const handleEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    router.push(`/dashboard/blog/${blog.id}`);
+    router.push(`${editUrl}/${blog.id}`);
   };
 
   const handleDelete = (e: React.MouseEvent) => {

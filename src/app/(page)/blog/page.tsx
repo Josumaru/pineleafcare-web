@@ -12,22 +12,6 @@ const Page: NextPage = ({}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const placeholder: Blog = {
-    id: "",
-    userId: "Overlogic",
-    author: {
-      name: "John Doe",
-      image: "/images/john-doe.jpg",
-    },
-    category: "Overlogic",
-    image: "/images/overlogic-logo.png",
-    title: "Overlogic",
-    content:
-      "Overlogic adalah startup yang bergerak dibidang pengembangan software dan platform. Kami ingin memberikan solusi yang unggul dan meningkatkan kinerja perusahaan kami.",
-    createdAt: "2023-01-01",
-    updatedAt: "2023-01-01",
-  };
-
 
   useEffect(() => {
     setIsLoading(true);

@@ -2,7 +2,7 @@
 import { Blog } from "@/types/blog";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import BlogTipsCard from "../blog/BlogTipsCard";
+import BlogTipsCard from "@/components/dashboard/BlogTipsCard";
 
 interface Props {
   id: string;
@@ -19,7 +19,7 @@ const BlogTipsPengguna: NextPage<Props> = ({ id }) => {
     const fetchData = async () => {
       try {
         setError(null);
-        const res = await fetch("/api/blog");
+        const res = await fetch("/api/get-all-blog");
         const data = await res.json();
         const filteredBlogs = data.filter((blog: Blog) => blog.userId === id);
 
@@ -58,7 +58,7 @@ const BlogTipsPengguna: NextPage<Props> = ({ id }) => {
       ) : (
         <div className="grid grid-cols-3 gap-2 mt-2 max-w-7xl w-full">
           {blogs.map((blog, index) => (
-            <BlogTipsCard key={index} blog={blog} />
+            <BlogTipsCard key={index} blog={blog} editUrl="/blog/edit"/>
           ))}
         </div>
       )}

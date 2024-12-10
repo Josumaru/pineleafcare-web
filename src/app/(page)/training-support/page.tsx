@@ -9,12 +9,12 @@ interface Props {}
 const Page: NextPage<Props> = ({}) => {
   return (
     <div>
-      <div className="flex items-center justify-center flex-col h-screen">
+      <div className="flex items-start justify-center flex-col h-screen">
+        <Spotlight
+          className="-top-40 left-0 md:left-60 md:-top-20"
+          fill="white"
+        />
         <div className="h-[40rem] w-full rounded-md flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
-          <Spotlight
-            className="-top-40 left-0 md:left-60 md:-top-20"
-            fill="white"
-          />
           <div className="flex flex-col items-center justify-center">
             <p className="text-7xl bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text font-bold">
               TRAINING & SUPPORT

@@ -3,7 +3,7 @@ import { NextPage } from "next";
 const BiayaSection: NextPage = () => {
   return (
     <section className="bg-black text-white">
-        <div className="lg:w-1/2 text-left py-32 pl-32">
+        <div className="lg:w-1/2 text-left py-32 pl-[65px]">
             <h3 className="text-6xl font-extrabold bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text">Kenapa Harus Memilih
             Kami? </h3>
         </div>
