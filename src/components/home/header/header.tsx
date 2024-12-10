@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { NextPage } from "next";
-import Image from 'next/image'; // Import image component from Next.js
+import { Spotlight } from "@/components/home/spotlight/spotlight";
+// import Image from 'next/image'; // Import image component from Next.js
 import { Send } from 'lucide-react';
 
 // Mengimpor komponen AnimatedTestimonials secara dinamis
@@ -19,7 +20,7 @@ const HeaderWithTestimonials: NextPage = ({}) => {
   return (
     <section className="bg-black text-white py-16 max-w-7xl">
       {/* Header Section */}
-      <div className="container flex flex-col lg:flex-row items-center justify-between">
+      <div className="container flex flex-col lg:flex-row items-center justify-between pt-10">
         <div className="lg:w-1/2 flex flex-col items-start justify-start text-center lg:text-left space-y-6">
           <h1 className="text-5xl font-extrabold bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text">
             Perawatan Terbaik untuk Sepatu, Tas, & Apparel Anda
@@ -37,10 +38,8 @@ const HeaderWithTestimonials: NextPage = ({}) => {
 
         {/* Gambar testimonial dengan rotasi dan animasi */}
         <div className="lg:w-1/2 flex justify-center mt-8 lg:mt-0 relative">
-          {/* Efek Cahaya Bergradasi */}
-          <div className="absolute inset-0 bg-white opacity-20 rounded-full transform z-0"></div>
-
           <div className="relative z-10 w-full h-auto">
+            <Spotlight className="absolute inset-0 z-0 scale-110" fill="white" />
             {/* Memasukkan komponen AnimatedTestimonials */}
             <AnimatedTestimonials testimonials={testimonialsData} />
           </div>
