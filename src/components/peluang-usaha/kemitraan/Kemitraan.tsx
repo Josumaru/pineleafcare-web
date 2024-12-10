@@ -3,8 +3,8 @@ import { LucideClipboard, LucideHandshake, LucideWallet } from "lucide-react";
 import { NextPage } from "next";
 const Kemitraan: NextPage = ({}) => {
     return (
-        <div className="text-white py-12 px-6 grid grid-cols-2 gap-60">
-            <div className="max-w-6xl mx-auto">
+        <div className="text-white py-12 grid grid-cols-2 gap-60">
+            <div className="max-w-7xl">
                 <div className="mb-5">
                     <div className="text-2xl font-bold opacity-50">KEMITRAAN</div>
                     <div className=""><GradientTitle text="MENGAPA PINELEAF?"/></div>

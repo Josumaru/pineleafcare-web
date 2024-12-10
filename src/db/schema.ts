@@ -6,18 +6,19 @@ export const blogs = table("blogs", {
   title: t.varchar({ length: 256 }).notNull(),
   content: t.text().notNull(),
   image: t.varchar({ length: 512 }),
-  date: t.timestamp().defaultNow().notNull(),
+  createdAt: t.timestamp().defaultNow().notNull(),
+  updatedAt: t.timestamp().defaultNow().notNull(),
   category: t.varchar().notNull(),
   author_id: t.uuid().notNull(),
-});
+}).enableRLS();
 
 export const users = table("users", {
   id: t.uuid().primaryKey(),
   name: t.varchar({ length: 256 }).notNull(),
-  admin: t.boolean().default(false),
   image: t.varchar({ length: 512 }),
+  banner: t.varchar({ length: 512 }),
+  verified: t.boolean().default(false),
+}).enableRLS();
 
-})
-
-export type InsertBlogType = typeof blogs.$inferInsert
-export type SelectBlogType = typeof blogs.$inferSelect
+export type InsertBlogType = typeof blogs.$inferInsert;
+export type SelectBlogType = typeof blogs.$inferSelect;
