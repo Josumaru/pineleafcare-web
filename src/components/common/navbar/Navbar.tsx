@@ -1,8 +1,5 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
-
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -10,80 +7,114 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import { ImageConstants } from "@/constants/ImageConstants";
-import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
-import { PlusIcon } from "lucide-react";
+import { LayoutGridIcon, LogInIcon, PlusIcon } from "lucide-react";
+import { getUser } from "./action";
+import { LogOut, User } from "lucide-react";
+import NavbarMenu from "./NavbarMenu";
+import Image from "next/image";
 
-const Navbar = () => {
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/lib/initialName";
+const Navbar = async () => {
+  const user = await getUser();
 
-  const pages = [
-    {
-      title: "Beranda",
-      href: "/",
-    },
-    {
-      title: "Peluang Usaha",
-      href: "/peluang-usaha",
-    },
-    {
-      title: "Training & Support",
-      href: "/training-support",
-    },
-    {
-      title: "Produk",
-      href: "/produk",
-    },
-    {
-      title: "Blog & Tips",
-      href: "/blog-tips",
-    },
-  ];
-  useEffect(() => {
-    const currentPathname = window.location.pathname;
-    setCurrentPage(currentPathname);
-  }, []);
-  const [currentPage, setCurrentPage] = useState("");
   return (
     <div className="border-b bg-transparent fixed top-0 w-full border-b-white border-opacity-20 flex p-5 items-center justify-center z-50 duration-300 backdrop-blur-md">
       <NavigationMenu className="max-w-7xl flex justify-between">
-        <Image
-          src={ImageConstants.pineleafLogo}
-          alt="Pineleaf Logo"
-          height={32}
-        />
+        <Link href={"/beranda"}>
+          <Image
+            src={ImageConstants.pineleafLogo}
+            className="hover:cursor-pointer"
+            alt="Pineleaf Logo"
+            height={32}
+          />
+        </Link>
         <NavigationMenuList>
-          {pages.map((page, index) => {
-            return (
-              <NavigationMenuItem key={index}>
-                <Link
-                  href={page.href}
-                  onClick={() => setCurrentPage(page.href)}
-                >
-                  <div
-                    className="text-sm font-medium leading-none px-2"
-                    style={{
-                      color: page.href == currentPage ? "#FFFFFF" : "#FFFFFF90",
-                    }}
-                  >
-                    {page.title}
-                  </div>
-                </Link>
-              </NavigationMenuItem>
-            );
-          })}
+          <NavbarMenu />
+        </NavigationMenuList>
+        <NavigationMenuList>
+          {user && (
+            <NavigationMenuItem>
+              <Link href={"/blog/create"}>
+                <Button className="bg-white text-black mx-2 hover:bg-gray-300">
+                  <PlusIcon />
+                  Posting
+                </Button>
+              </Link>
+            </NavigationMenuItem>
+          )}
+
           <NavigationMenuItem>
-                <Link
-                  href={"/posting"}
-                >
-                  <Button className="bg-white hover:bg-gray-100 text-black h-8">
-                    <PlusIcon/>
-                    <span>Posting</span>
-                  </Button>
-                </Link>
-              </NavigationMenuItem>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="bg-white rounded-full flex items-center justify-center w-9 h-9">
+                    <Avatar>
+                      <AvatarImage
+                        src={user?.image}
+                        alt={user?.name}
+                        className="object-cover"
+                      />
+                      <AvatarFallback className="text-black">
+                        {getInitials(user?.name ?? "Overlogic")}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-42 bg-black text-white border-gray-800">
+                  <DropdownMenuItem>
+                    <Link
+                      href={"/pengguna"}
+                      className="w-full flex justify-between items-center flex-row gap-2"
+                    >
+                      <User />
+                      <p>Pengguna</p>
+                      <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                    </Link>
+                  </DropdownMenuItem>
+                  {user.role == "admin" && (
+                    <DropdownMenuItem>
+                      <Link
+                        href={"/dashboard"}
+                        className="w-full flex justify-between items-center flex-row gap-2"
+                      >
+                        <LayoutGridIcon />
+                        <span>Dashboard</span>
+                        <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut>
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+
+                  <DropdownMenuItem>
+                    <Link
+                      href={"/logout"}
+                      className="w-full flex justify-between items-center flex-row gap-2"
+                    >
+                      <LogOut />
+                      <span>Keluar</span>
+                      <DropdownMenuShortcut>⇧⌘K</DropdownMenuShortcut>
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link href={"/login"}>
+                <Button className="bg-white hover:bg-gray-200 text-black ml-10">
+                  <LogInIcon />
+                  <span>Masuk</span>
+                </Button>
+              </Link>
+            )}
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </div>

@@ -1,8 +1,5 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
-
 import { createClient } from '@/utils/supabase/server'
 import { db } from '@/db/db'
 import { users } from '@/db/schema'
@@ -18,12 +15,19 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
-    redirect(`/error?message=${encodeURIComponent(error.message)}`)
+    let message = error.message
+    switch (message) {
+      case "Invalid login credentials":
+        message = "Email atau password salah"        
+        break;
+      default:
+        message = "Terjadi kesalahan yang tidak diketahui"
+        break;
+    }
+    return { success: false, message: message }
   }
 
-
-  revalidatePath('/', 'layout')
-  redirect('/')
+  return { success: true, message: 'Login berhasil!' }
 }
 
 export async function register(formData: FormData) {
@@ -32,8 +36,8 @@ export async function register(formData: FormData) {
   const data = {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
-    name: formData.get('name') as string, // Pastikan ada input nama di form
-    image: formData.get('image') as string | null, // Optional
+    name: formData.get('name') as string,
+    image: formData.get('image') as string | null,
   }
 
   const { data: authData, error } = await supabase.auth.signUp({
@@ -42,13 +46,12 @@ export async function register(formData: FormData) {
   })
 
   if (error) {
-    redirect(`/error?message=${encodeURIComponent(error.message)}`)
+    return { success: false, message: error.message }
   }
-
 
   if (authData?.user) {
     const userData = {
-      id: authData?.user.id,
+      id: authData.user.id,
       name: data.name,
       image: data.image || '',
     }
@@ -56,10 +59,9 @@ export async function register(formData: FormData) {
     try {
       await db.insert(users).values(userData)
     } catch (dbError) {
-      console.error('Error inserting into users table:', dbError)
+      return { success: false, message: 'Gagal menyimpan data pengguna ke database.' }
     }
   }
 
-  revalidatePath('/login', 'layout')
-  redirect('/login')
+  return { success: true, message: 'Registrasi berhasil! Silakan login.' }
 }

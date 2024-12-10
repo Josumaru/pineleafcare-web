@@ -12,7 +12,7 @@ const Page: NextPage<Props> = async ({}) => {
     if (error || !data?.user) {
       redirect('/login')
     }
-  return <div></div>
+  redirect('/dashboard/blog')
 }
 
 export default Page

@@ -1,7 +1,10 @@
-export interface UserModel {
+export interface User {
   id: string;
   name: string;
   email: string;
-  password: string;
+  banner: string;
   role: string;
+  image: string;
+  verified: boolean;
+  postCount?: number;
 }

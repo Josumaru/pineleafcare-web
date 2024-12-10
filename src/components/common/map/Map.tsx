@@ -37,7 +37,7 @@ const MapComponent = () => {
   return (
     <MapContainer
       className="rounded-xl max-md:!w-full"
-      center={[-6.964771050766204, 111.43800955050327]}
+      center={[-7.5708232,110.7997795]}
       zoom={13}
       style={{height: '200px', width: '90%', zIndex: 10 }}
     >
@@ -45,7 +45,7 @@ const MapComponent = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[-6.964771050766204, 111.43800955050327]}>
+      <Marker position={[-7.5708232,110.7997795]}>
         <Popup>
           <span className="font-bold">Anugerah Powder Coating Blora</span>
           <br />

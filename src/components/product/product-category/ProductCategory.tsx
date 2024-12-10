@@ -38,7 +38,7 @@ const ProductCategory: NextPage = () => {
     }).format(price);
   }
   return (
-    <div className="ml-5">
+    <div className="">
       <div className="text-white font-thin">Produk Terbaik Dari Pineleaf</div>
       <div className="flex gap-3">
         <div className="mt-4">
@@ -94,9 +94,9 @@ const ProductCategory: NextPage = () => {
               <div className="text-white opacity-50 text-sm">{product.category}</div>
               <div className="text-white font-bold text-center text-4xl">{formatCurrency(product.price)}</div>
               <div className="flex items-center justify-center">
-                <button className="flex items-center justify-between bg-costumBgCard text-white px-4 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
+                <button className="flex items-center justify-between bg-costumBgCard text-white pl-4 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
                         <span className="mr-2">Beli Sekarang</span> 
-                        <span className=" bg-gray-700 rounded-full p-1">
+                        <span className="px-5 bg-gray-700 rounded-full p-1 m-[3px]">
                             <LucideSend className="w-4 h-4"/>
                         </span>
                   </button>
