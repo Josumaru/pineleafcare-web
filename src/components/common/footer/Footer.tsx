@@ -2,9 +2,8 @@ import { ImageConstants } from "@/constants/ImageConstants";
 import { NextPage } from "next";
 import Image from "next/image";
 import MapComponent from "../map/Map";
-import { Instagram, Mail, PhoneIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import MessageBox from "./MessageBox";
 
 interface Props {}
 
@@ -18,6 +17,7 @@ const Footer: NextPage<Props> = ({}) => {
               src={ImageConstants.pineleafLogo.src}
               width={120}
               height={32}
+              className="mb-2"
               alt="Pineleaf Care"
             />
             <MapComponent />
@@ -25,42 +25,39 @@ const Footer: NextPage<Props> = ({}) => {
               Jl. Dr. Rajiman 483, Bumi, Laweyan, Solo
             </p>
           </div>
-          <div className="w-1/3 pt-9">
-            <p className="text-white font-bold">Kontak</p>
-            <div className="flex gap-1 pb-1 text-[#ABABAB]">
-              <Mail strokeWidth={1.5} />
-              <p>pineleafcare@gmail.com</p>
+          <div className="w-1/2 pt-9 flex">
+            <div className="w-1/2">
+              <p className="text-white font-bold">Kontak</p>
+              <div className="flex gap-1 pb-1 text-[#ABABAB]">
+                <a className="hover:underline" target="_blank" href="mailto:pineleaf.indo@gmail.com">Email</a>
+              </div>
+              <div className="flex gap-1 pb-1 text-[#ABABAB]">
+                <a href={"https://wa.me/6285867942389"} target="_blank" className="hover:underline">Whats App</a>
+              </div>
+              <div className="flex gap-1 pb-1 text-[#ABABAB]">
+                <a href={"https://instagram.com/pineleaf"} target="_blank" className="hover:underline">Instagram</a>
+              </div>
+              <div className="flex gap-1 pb-1 text-[#ABABAB]">
+                <a href={"https://shopee.co.id/pineleaf"} target="_blank" className="hover:underline">Shopee</a>
+              </div>
+              <div className="flex gap-1 pb-1 text-[#ABABAB]">
+                <a href={"https://www.tokopedia.com/pineleafcleaner"} target="_blank" className="hover:underline">Tokopedia</a>
+              </div>
             </div>
-            <div className="flex gap-1 pb-1 text-[#ABABAB]">
-              <PhoneIcon strokeWidth={1.5} />
-              <p>+62 858-6794-2389</p>
-            </div>
-            <div className="flex gap-1 pb-1 text-[#ABABAB]">
-              <Instagram strokeWidth={1.5} />
-              <p>@pineleaf</p>
-            </div>
-          </div>
-          <div className="w-1/3 pt-9">
-            <p className="text-white font-bold">
-              Berminat bermitra dengan Pineleaf Care ?
-            </p>
-            <div className="flex flex-col items-end">
-              <Input
-                placeholder="Nama"
-                className="bg-black mb-2 border-gray-600 text-white"
-              />
-              <Input
-                placeholder="Pesan"
-                className="bg-black mb-2 border-gray-600 text-white"
-              />
-              <Button
-                variant={"outline"}
-                className=" bg-white w-full mt-2 hover:bg-gray-200 text-black"
-              >
-                Kirim
-              </Button>
+            <div className="w-1/2">
+              <p className="text-white font-bold">Halaman</p>
+              <div className="flex gap-1 pb-1 text-[#ABABAB]">
+                <Link className="hover:underline" target="_blank" href="blog">Blog & Tips</Link>
+              </div>
+              <div className="flex gap-1 pb-1 text-[#ABABAB]">
+                <Link href={"/blog/create"} target="_blank" className="hover:underline">Posting Blog</Link>
+              </div>
+              <div className="flex gap-1 pb-1 text-[#ABABAB]">
+                <Link href={"/produk"} target="_blank" className="hover:underline">Produk</Link>
+              </div>
             </div>
           </div>
+          <MessageBox />
         </div>
       </div>
 

@@ -8,12 +8,14 @@ interface Props {}
 
 const Page: NextPage<Props> = ({}) => {
   return (
-    <>
-      <Header/>
-      <Kemitraan/>
-      <PaketKemitraan/>
-      <LokasiMitra/>
-    </>
+    <div className="w-full flex items-center justify-center flex-col">
+        <Header/>
+      <div className="max-w-7xl w-full">
+        <Kemitraan/>
+        <PaketKemitraan/>
+        <LokasiMitra/>
+      </div>
+    </div>
   )
 }
 
