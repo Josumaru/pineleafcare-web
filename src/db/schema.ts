@@ -1,6 +1,23 @@
 import { pgTable as table } from "drizzle-orm/pg-core";
 import * as t from "drizzle-orm/pg-core";
 
+export const products = table("products", {
+  id: t.uuid().primaryKey(),
+  page: t.numeric().notNull(),
+  url: t.varchar({ length: 512 }),
+});
+
+export const markers = table("markers", {
+  id: t.uuid().primaryKey(),
+  lat: t.numeric().notNull(),
+  lng: t.numeric().notNull(),
+  title: t.varchar({ length: 512 }),
+  desc: t.varchar({ length: 512 }),
+  loc: t.varchar({ length: 32 }).notNull(),
+  province: t.varchar({ length: 128 }),
+  city: t.varchar({ length: 128 }),
+});
+
 export const blogs = table("blogs", {
   id: t.uuid().primaryKey(),
   title: t.varchar({ length: 256 }).notNull(),
