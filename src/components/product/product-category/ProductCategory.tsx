@@ -10,7 +10,6 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import { ImageConstants } from "@/constants/ImageConstants";
 
 const ProductCategory: NextPage = () => {
   // Daftar kategori
@@ -67,21 +66,23 @@ const ProductCategory: NextPage = () => {
   //   .sort((a, b) =>
   //     sortOrder === "termurah" ? a.price - b.price : b.price - a.price
   //   );
-  const formatCurrency = (price: number) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
+  // const formatCurrency = (price: number) => {
+  //   return new Intl.NumberFormat("id-ID", {
+  //     style: "currency",
+  //     currency: "IDR",
+  //     minimumFractionDigits: 0,
+  //   }).format(price);
+  // };
   return (
     <div className="">
-      <div className="text-white font-thin">Produk Terbaik Dari Pineleaf</div>
-      <div className="flex gap-3">
-        <div className="mt-4">
+      <div className="text-white font-thin text-center sm:text-left">
+        Produk Terbaik Dari Pineleaf
+      </div>
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mt-4">
+        <div className="mt-4 sm:mt-0">
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="bg-black">
-              <Button className="px-14 py-2 border-white text-white rounded-lg border">
+              <Button className="px-8 sm:px-14 py-2 border-white text-white rounded-lg border">
                 Pilih Kategori: {selectedCategory}
               </Button>
             </DropdownMenuTrigger>
@@ -99,10 +100,10 @@ const ProductCategory: NextPage = () => {
         </div>
 
         {/* Dropdown untuk sorting harga */}
-        <div className="mt-4">
+        <div className="mt-4 sm:mt-0">
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="bg-black">
-              <Button className="px-14 py-2 border-white text-white rounded-lg border">
+              <Button className="px-8 sm:px-14 py-2 border-white text-white rounded-lg border">
                 Urutkan Harga:{" "}
                 {sortOrder === "termurah"
                   ? "Termurah ke Termahal"
@@ -120,38 +121,53 @@ const ProductCategory: NextPage = () => {
           </DropdownMenu>
         </div>
       </div>
-      {/* Dropdown untuk kategori */}
 
       {/* Daftar produk */}
       <div className="mt-6">
-        <div className="text-white text-lg font-semibold">Daftar Produk</div>
-        <div className="grid grid-cols-3 gap-4 mt-4">
-          {products&&products.map((product, index) => (
-            <div
-              key={index}
-              className="bg-[#18181B] rounded-2xl p-4 border border-[#7E7E7E]"
-            >
-              <Image width={1080} height={1080} src={product.img} alt="product" className="rounded-xl h-[200px] object-cover"/>
-              <div className="text-white font-semibold mt-2">{product.name}</div>
-              <div className="text-white opacity-50 text-sm">
-                {product.rating}   {product.sold}
+        <div className="text-white text-lg font-semibold text-center sm:text-left">
+          Daftar Produk
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          {products &&
+            products.map((product, index) => (
+              <div
+                key={index}
+                className="bg-[#18181B] rounded-2xl p-4 border border-[#7E7E7E]"
+              >
+                <Image
+                  width={1080}
+                  height={1080}
+                  src={product.img}
+                  alt="product"
+                  className="rounded-xl h-[200px] object-cover"
+                />
+                <div className="text-white font-semibold mt-2">
+                  {product.name}
+                </div>
+                <div className="text-white opacity-50 text-sm">
+                  {product.rating} {product.sold}
+                </div>
+                <div className="text-white font-bold text-center text-2xl sm:text-4xl">
+                  {product.price}
+                </div>
+                <div className="flex items-center justify-center">
+                  <a
+                    target="_blank"
+                    href={product.link}
+                    className="flex items-center justify-between bg-costumBgCard text-white pl-4 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition"
+                  >
+                    <span className="mr-2">Beli Sekarang</span>
+                    <span className="px-5 bg-gray-700 rounded-full p-1 m-[3px]">
+                      <LucideSend className="w-4 h-4" />
+                    </span>
+                  </a>
+                </div>
               </div>
-              <div className="text-white font-bold text-center text-4xl">
-                {product.price}
-              </div>
-              <div className="flex items-center justify-center">
-                <a target="_blank" href={product.link} className="flex items-center justify-between bg-costumBgCard text-white pl-4 mt-10 mb-10 rounded-full border border-gray-600 hover:bg-gray-700 transition">
-                  <span className="mr-2">Beli Sekarang</span>
-                  <span className="px-5 bg-gray-700 rounded-full p-1 m-[3px]">
-                    <LucideSend className="w-4 h-4" />
-                  </span>
-                </a>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
+
   );
 };
 
