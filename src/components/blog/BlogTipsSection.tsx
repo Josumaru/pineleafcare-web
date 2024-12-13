@@ -19,7 +19,7 @@ interface BlogProps {
 
 const BlogTipsSection: NextPage<BlogProps> = ({ blogs }) => {
   return (
-    <div className="max-w-7xl w-screen pt-5">
+    <div className="max-w-7xl w-screen pt-5 px-5 lg:px-0">
       <GradientTitle text="Blog  dan Tips" />
       <p className="text-white">
         Di sini, kami membagikan beberapa tips sepatu, artikel fakta dan berita
@@ -40,7 +40,7 @@ const BlogTipsSection: NextPage<BlogProps> = ({ blogs }) => {
           );
         })}
       </div>
-      <div className="grid grid-cols-3 gap-2 mt-2 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-2 ">
         {blogs.map((data, index) => (
           <BlogTipsCard blog={data} key={index} />
         ))}

@@ -28,7 +28,7 @@ const BlogTipsHeader: NextPage<Props> = ({ blog }) => {
         <div className="absolute w-screen h-screen flex justify-center bg-black bg-opacity-50">
           <div className="max-w-7xl flex w-screen h-screen items-end">
             <div className="flex w-1/2 flex-col pb-10">
-              <div className="p-1 border border-white mb-2 rounded-xl px-5 w-fit text-white">
+              <div className="p-1 border border-white mb-2 rounded-xl px-5 w-fit text-white hover:bg-[#ffffff59] transition-colors hover:cursor-pointer">
                 {blog?.category ?? ""}
               </div>
               <p className="text-white ">{blog?.title ?? ""}</p>
@@ -50,7 +50,9 @@ const BlogTipsHeader: NextPage<Props> = ({ blog }) => {
                         {getInitials(blog?.author?.name ?? "Tidak Bernama")}
                       </AvatarFallback>
                     </Avatar>
-                    <p className="text-white">{blog?.author?.name ?? "Tidak Bernama"}</p>
+                    <p className="text-white">
+                      {blog?.author?.name ?? "Tidak Bernama"}
+                    </p>
                   </div>
                   <p className="text-[#878787] w-full">
                     {formattedDate}・Bacaan{" "}
