@@ -487,7 +487,7 @@ const MitraMap = () => {
         </div>
 
         {showCards && cardData.length > 0 && (
-          <div className="mt-8 grid grid-cols-3 gap-4">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {cardData.map((card, index) => (
               <div key={index} className="bg-gray-500 rounded-lg p-4">
                 <div className="text-lg font-semibold mt-2">{card.title}</div>
@@ -498,7 +498,7 @@ const MitraMap = () => {
         )}
 
         {!showCards && (
-          <div className="mt-8 grid grid-cols-3 gap-4">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
             {Object.values(allCardData).flatMap(province => 
               Object.values(province).flat()).map((card, index) => (
               <div key={index} className="bg-gray-500 rounded-lg p-4">
