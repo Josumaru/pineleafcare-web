@@ -19,7 +19,7 @@ const PaketKemitraan: NextPage = ({}) => {
                     </div>
                     <div className="mt-10 md:mt-24 text-2xl md:text-4xl text-center font-bold">
                         <span className="relative align-top top-[-4px] md:top-[-10px]">Rp </span>
-                        200.000
+                        2.300.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
                         <a href="https://wa.me/6285867942389" target="_blank">
@@ -42,7 +42,7 @@ const PaketKemitraan: NextPage = ({}) => {
                     </div>
                     <div className="mt-10 md:mt-20 text-2xl md:text-4xl text-center font-bold">
                         <span className="relative align-top top-[-4px] md:top-[-10px]">Rp </span>
-                        200.000
+                        5.500.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
                         <a href="https://wa.me/6285867942389" target="_blank">
@@ -65,7 +65,7 @@ const PaketKemitraan: NextPage = ({}) => {
                     </div>
                     <div className="mt-10 md:mt-16 text-2xl md:text-4xl text-center font-bold">
                         <span className="relative align-top top-[-4px] md:top-[-10px]">Rp </span>
-                        200.000
+                        9.500.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
                         <a href="https://wa.me/6285867942389" target="_blank">
