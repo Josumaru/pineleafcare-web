@@ -43,7 +43,6 @@ export async function GET(req: Request) {
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
-    console.error(error);
     return new Response(JSON.stringify({ error: "Terjadi kesalahan pada server" }), { status: 500 });
   }
 }

@@ -25,7 +25,6 @@ export async function GET(req: Request): Promise<Response> {
         .orderBy(desc(blogs.createdAt));
       return new Response(JSON.stringify(blogData), { status: 200 });
     } catch (error) {
-      console.error("Error fetching blog data:");
       return new Response(
         JSON.stringify({
           error: error instanceof Error ? error.message : "Unknown error",

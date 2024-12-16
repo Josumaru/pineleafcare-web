@@ -47,7 +47,6 @@ const UpdateNameProfile: NextPage<Props> = ({ user }) => {
         });
       }
     } catch (error) {
-      console.error(error);
     }
     setIsLoading(false);
   };

@@ -29,7 +29,6 @@ export async function GET(req: Request): Promise<Response> {
 
     return new Response(JSON.stringify(blogData[0]), { status: 200 });
   } catch (error) {
-    console.error(error);
     return new Response(
       JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
       { status: 500 }

@@ -34,7 +34,6 @@ async function addFileToBucket(
     });
 
   if (error) {
-    console.error("Error uploading file:", error);
     return null;
   }
 
@@ -90,7 +89,6 @@ export async function POST(req: Request): Promise<Response> {
       }
     );
   } catch (error) {
-    console.error(error);
     return new Response(
       JSON.stringify({
         error: error instanceof Error ? error.message : "Unknown error",

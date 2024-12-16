@@ -45,11 +45,9 @@ export async function GET(req: Request): Promise<Response> {
       rating = ratingSold.slice(0, 3).trim();
       sold = ratingSold.slice(3).trim();
       if (!/^\d\.\d$/.test(rating)) {
-        console.log("Rating invalid:", rating);
         rating = "";
       }
       if (!/^\d+\s*Terjual$/.test(sold)) {
-        console.log("Terjual invalid:", sold);
         sold = "";
       }
       img =

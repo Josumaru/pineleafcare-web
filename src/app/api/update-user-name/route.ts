@@ -31,7 +31,6 @@ export async function POST(req: Request): Promise<Response> {
       }
     );
   } catch (error) {
-    console.error(error);
     return new Response(
       JSON.stringify({
         error: error instanceof Error ? error.message : "Error tidak diketahui",
