@@ -93,7 +93,6 @@ const Page: NextPage<Props> = ({}) => {
         });
       }
     } catch (error) {
-      console.error("Upload error:", error);
     } finally {
       setIsLoading(false);
     }

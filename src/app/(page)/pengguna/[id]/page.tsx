@@ -26,7 +26,6 @@ const Page: NextPage<Props> = ({ params }) => {
         }
         setUser(userData);
       } catch (error) {
-        console.error("Error fetching user data:", error);
       } finally {
         setLoading(false);
       }

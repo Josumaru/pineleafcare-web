@@ -18,7 +18,6 @@ async function deleteFileFromBucket(filePath: string) {
     .remove([filePath]);
 
   if (error) {
-    console.error("Error deleting file:", error);
     return null;
   }
 
@@ -42,10 +41,6 @@ export async function DELETE(req: Request): Promise<Response> {
     // Mengambil data filePath dari body request
     const formData = await req.formData();
     const filePath = formData.get("filePath") as string;
-    console.log('====================================');
-    console.log(filePath);
-    console.log('====================================');
-
 
     if (!filePath) {
       return new Response(
@@ -77,7 +72,6 @@ export async function DELETE(req: Request): Promise<Response> {
       }
     );
   } catch (error) {
-    console.error(error);
     return new Response(
       JSON.stringify({
         error: error instanceof Error ? error.message : "Unknown error",

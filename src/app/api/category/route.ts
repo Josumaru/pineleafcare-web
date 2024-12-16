@@ -10,7 +10,6 @@ async function isUserAdmin(): Promise<boolean> {
 
   const { data, error } = await (await supabase).auth.getUser();
   if (error || !data.user) {
-    console.error("Error fetching user:", error);
     return false;
   }
 
@@ -61,14 +60,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       );
     }
     const data = await db.insert(categories).values({id: id, name: category})
-    console.log('====================================');
-    console.log(data);
-    console.log('====================================');
     return NextResponse.json({ success: true, data }, { status: 201 });
   } catch (error) {
-    console.log('====================================');
-    console.log(error);
-    console.log('====================================');
     return NextResponse.json(
       { error: true, message: "Error" },
       { status: 500 }

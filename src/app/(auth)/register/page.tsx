@@ -56,13 +56,12 @@ const Page: NextPage = () => {
         router.push("/login")
       }
     } catch (error) {
-      console.error(error);
     }
   };
 
   return (
     <div className="flex">
-      <div className="w-1/2 p-10 h-screen bg-[#18181B] border-[#27272A] border flex flex-col items-start justify-between">
+      <div className="w-1/2 p-10 h-screen bg-[#18181B] border-[#27272A] border hidden md:flex flex-col items-start justify-between">
         <Image src={ImageConstants.pineleafLogo} alt={"Pineleaf Care"} width={80}/>
         <div>
           <p className="text-white">
@@ -72,10 +71,10 @@ const Page: NextPage = () => {
           </p>
         </div>
       </div>
-      <div className="flex items-center justify-center w-1/2">
+      <div className="flex items-center justify-center h-screen w-full md:w-1/2 px-2">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-center justify-center mb-20">
-            <p className="text-gray-100 text-2xl font-bold">
+            <p className="text-gray-100 text-2xl font-bold text-center">
               Selamat datang di Pineleafcare
             </p>
             <p className="text-gray-300">Daftar dengan Email</p>

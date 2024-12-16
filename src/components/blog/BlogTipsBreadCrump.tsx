@@ -21,7 +21,7 @@ const BlogTipsBreadcrumb: NextPage<Props> = ({ id }) => {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href="/blog-tips">Blog & Tips</BreadcrumbLink>
+          <BreadcrumbLink href="/blog">Blog & Tips</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>

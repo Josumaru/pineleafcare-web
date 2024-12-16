@@ -21,7 +21,7 @@ export const LinkPopoverBlock: React.FC<LinkPopoverBlockProps> = ({ url, onClear
           setCopyTitle('Copied!')
           setTimeout(() => setCopyTitle('Copy'), 1000)
         })
-        .catch(console.error)
+        .catch()
     },
     [url]
   )

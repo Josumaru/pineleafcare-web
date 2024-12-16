@@ -36,7 +36,6 @@ const Page = () => {
   const [categoryBlogs, setCategoryBlogs] = useState<string[]>([]);
 
   useEffect(() => {
-    console.log(value?.toString());
   }, [value]);
 
   const router = useRouter();
@@ -104,7 +103,6 @@ const Page = () => {
         });
       }
     } catch (err) {
-      console.error(err);
       setLoading(false);
     }
     setLoading(false);

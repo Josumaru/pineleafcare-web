@@ -9,7 +9,6 @@ async function isUserAdmin(): Promise<boolean> {
 
   const { data, error } = await (await supabase).auth.getUser();
   if (error || !data.user) {
-    console.error("Error fetching user:", error);
     return false;
   }
 
@@ -65,7 +64,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const { error } = await (await supabase).from("markers").insert(newMarker);
 
     if (error) {
-      console.error("Error inserting marker:", error);
       return NextResponse.json(
         { success: false, message: "Failed to add marker." },
         { status: 500 }
@@ -77,7 +75,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       { status: 201 }
     );
   } catch (err) {
-    console.error("Unexpected error:", err);
     return NextResponse.json(
       { success: false, message: "An unexpected error occurred." },
       { status: 500 }
@@ -94,7 +91,6 @@ export async function GET(): Promise<NextResponse> {
       const { data, error } = await (await supabase).from("markers").select("*");
   
       if (error) {
-        console.error("Error fetching markers:", error);
         return NextResponse.json(
           { success: false, message: "Failed to fetch markers." },
           { status: 500 }
@@ -107,7 +103,6 @@ export async function GET(): Promise<NextResponse> {
         { status: 200 }
       );
     } catch (err) {
-      console.error("Unexpected error:", err);
       return NextResponse.json(
         { success: false, message: "An unexpected error occurred." },
         { status: 500 }
@@ -157,7 +152,6 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
       .eq("id", id);
 
     if (error) {
-      console.error("Error updating marker:", error);
       return NextResponse.json(
         { success: false, message: "Failed to update marker." },
         { status: 500 }
@@ -169,7 +163,6 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
       { status: 200 }
     );
   } catch (err) {
-    console.error("Unexpected error:", err);
     return NextResponse.json(
       { success: false, message: "An unexpected error occurred." },
       { status: 500 }
@@ -205,7 +198,6 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
     const { error } = await (await supabase).from("markers").delete().eq("id", id);
 
     if (error) {
-      console.error("Error deleting marker:", error);
       return NextResponse.json(
         { success: false, message: "Failed to delete marker." },
         { status: 500 }
@@ -217,7 +209,6 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
       { status: 200 }
     );
   } catch (err) {
-    console.error("Unexpected error:", err);
     return NextResponse.json(
       { success: false, message: "An unexpected error occurred." },
       { status: 500 }

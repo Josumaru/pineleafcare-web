@@ -61,7 +61,6 @@ const ProductCategory: NextPage = () => {
         })
         setSources(arr);
       } catch (error) {
-        console.error(error);
       }
     };
     fetchSources();
