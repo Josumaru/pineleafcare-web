@@ -1,15 +1,11 @@
 "use client";
 import BlogTipsHeader from "@/components/blog/BlogTipsHeader";
 import BlogTipsSection from "@/components/blog/BlogTipsSection";
-import { Metadata, NextPage } from "next";
+import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { Blog } from "@/types/blog";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Head from "next/head";
-
-export const dynamic = "force-dynamic"
-
 
 const Page: NextPage = ({}) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -21,7 +17,9 @@ const Page: NextPage = ({}) => {
     const fetchData = async () => {
       try {
         setError(null);
-        const res = await fetch("/api/get-all-blog");
+        const res = await fetch("/api/get-all-blog", {
+          cache: "no-cache",
+        });
         const data = await res.json();
         setBlogs(data);
 
