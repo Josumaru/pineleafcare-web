@@ -59,8 +59,11 @@ export async function register(formData: FormData) {
     try {
       await db.insert(users).values(userData)
     } catch (dbError) {
-      return { success: false, message: 'Gagal menyimpan data pengguna ke database.' }
+      return { success: false, message: 'Gagal registrasi' }
     }
+  }
+  if(!authData) {
+    return { success: false, message: 'Gagal melakukan registrasi' }
   }
 
   return { success: true, message: 'Registrasi berhasil! Silakan login.' }
