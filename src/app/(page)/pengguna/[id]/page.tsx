@@ -96,7 +96,7 @@ const Page: NextPage<Props> = ({ params }) => {
         {/* Banner Image */}
         <div className="w-full h-[150px] lg:h-[250px] relative">
           <Image
-            src={user?.banner ?? "/banner/default.jpg"}
+            src={user?.banner == "" ? "/banner/default.jpg" : user?.banner ?? "/banner/default.jpg"}
             width={1024}
             height={300}
             alt={user?.name ?? "Banner"}
@@ -110,7 +110,7 @@ const Page: NextPage<Props> = ({ params }) => {
             {/* Profile Image */}
             <div className="relative rounded-lg w-32 h-32 lg:w-40 lg:h-40">
               <Image
-                src={user?.image ?? "/banner/default.jpg"}
+                src={user?.image == "" ? "/banner/default.jpg" : user?.image ?? "/banner/default.jpg"}
                 width={160}
                 height={160}
                 alt={user?.name ?? "Profile"}

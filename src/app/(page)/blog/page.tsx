@@ -1,17 +1,20 @@
 "use client";
 import BlogTipsHeader from "@/components/blog/BlogTipsHeader";
 import BlogTipsSection from "@/components/blog/BlogTipsSection";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import { useEffect, useState } from "react";
 import { Blog } from "@/types/blog";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Head from "next/head";
+
+export const dynamic = "force-dynamic"
+
 
 const Page: NextPage = ({}) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -21,6 +24,7 @@ const Page: NextPage = ({}) => {
         const res = await fetch("/api/get-all-blog");
         const data = await res.json();
         setBlogs(data);
+
       } catch (error) {
         setError("Terjadi Kesalahan");
       }
@@ -30,6 +34,7 @@ const Page: NextPage = ({}) => {
   }, []);
   return (
     <div className="flex items-center justify-center flex-col">
+      
       {isLoading ? (
         <div className="w-screen h-screen flex items-center justify-center text-white overflow-hidden">
           <div>

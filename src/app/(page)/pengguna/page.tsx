@@ -6,7 +6,6 @@ import Image from "next/image";
 import UpdateNameProfile from "@/components/pengguna/UpdateNameProfile";
 import UpdateBannerProfile from "@/components/pengguna/UpdateBannerProfile";
 import UpdateImageProfile from "@/components/pengguna/UpdateImageProfile";
-import { ImageConstants } from "@/constants/ImageConstants";
 
 const Page = async ({}) => {
   const user = await getUser();
@@ -23,7 +22,7 @@ const Page = async ({}) => {
         {/* Banner Image */}
         <div className="w-full h-[150px] lg:h-[250px] relative">
           <Image
-            src={user?.banner ?? "/banner/default.jpg"}
+            src={user?.banner == "" ? "/banner/default.jpg" : user?.banner ?? "/banner/default.jpg"}
             width={1024}
             height={300}
             alt={user?.name ?? "Banner"}
@@ -37,7 +36,7 @@ const Page = async ({}) => {
             {/* Profile Image */}
             <div className="relative rounded-lg w-32 h-32 lg:w-40 lg:h-40">
               <Image
-                src={user?.image ?? "/banner/default.jpg"}
+                src={user?.image == "" ? "/banner/default.jpg" : user?.image ?? "/banner/default.jpg"}
                 width={160}
                 height={160}
                 alt={user?.name ?? "Profile"}
@@ -82,7 +81,7 @@ const Page = async ({}) => {
           <div className="mt-16 lg:mt-14 justify-center gap-10 text-center hidden lg:flex">
             <div>
               <p className="text-gray-500 text-sm">Postingan</p>
-              <p className="text-gray-800 text-xl font-bold">
+              <p className="text-white text-xl font-bold">
                 {user?.postCount ?? 0}
               </p>
             </div>

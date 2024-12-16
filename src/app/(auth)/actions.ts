@@ -66,5 +66,5 @@ export async function register(formData: FormData) {
     return { success: false, message: 'Gagal melakukan registrasi' }
   }
 
-  return { success: true, message: 'Registrasi berhasil! Silakan login.' }
+  return { success: true, message: 'Registrasi berhasil! Konfirmasi email anda dan silakan masuk' }
 }

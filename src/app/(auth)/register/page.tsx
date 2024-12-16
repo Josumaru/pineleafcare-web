@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { register } from "../actions";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import { ToastAction } from "@/components/ui/toast";
 
 const schema = z.object({
   name: z
@@ -47,11 +48,14 @@ const Page: NextPage = () => {
         toast({
           title: "Permintaan Gagal",
           description: response.message,
+          variant: "destructive",
+          action: <ToastAction altText="Oke">Oke</ToastAction>,
         });
       } else {
         toast({
           title: "Berhasil",
           description: response.message,
+          action: <ToastAction altText="Oke">Oke</ToastAction>,
         });
         router.push("/login")
       }
