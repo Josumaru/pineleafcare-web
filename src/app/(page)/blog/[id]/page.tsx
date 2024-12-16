@@ -10,7 +10,6 @@ import { formatDate } from "@/lib/dateFormater";
 import { getInitials } from "@/lib/initialName";
 import { Blog } from "@/types/blog";
 import { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -19,14 +18,12 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-
 const Page: NextPage<Props> = ({ params }) => {
   const [id, setId] = useState<string>("");
   const [data, setData] = useState<Blog | null>(null);
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState(false);
-  const [ogImage, setOgImage] = useState<string | null>(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -40,9 +37,6 @@ const Page: NextPage<Props> = ({ params }) => {
         if (data[i].id === id) {
           setData(data[i]);
           setIsLoading(false);
-          if (data.length > 0) {
-            setOgImage(data[0].image);
-          }
           return;
         }
       }
@@ -79,13 +73,6 @@ const Page: NextPage<Props> = ({ params }) => {
   return (
     <div className="w-full text-white flex justify-center mt-24 px-2">
       <div className="max-w-7xl w-full">
-      {ogImage && (
-        <Head>
-          <meta property="og:image" content={ogImage} />
-          <meta property="og:title" content={blogs[0]?.title || "Blog"} />
-          <meta property="og:description" content={blogs[0]?.content || "Explore our blog"} />
-        </Head>
-      )}
         {!loading && <BlogTipsBreadcrumb id={id} />}
         {loading ? (
           <Skeleton className="w-full h-[450px] mt-5 rounded-xl" />
