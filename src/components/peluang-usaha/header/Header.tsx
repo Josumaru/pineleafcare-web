@@ -4,7 +4,7 @@ import { ImageConstants } from "@/constants/ImageConstants";
 const Header: NextPage = ({}) => {
     return (
         <div className="bg-[#272727] w-full">
-            <div className="text-center py-16 md:py-32">
+            <div className="text-center py-20 md:py-32">
                 <div className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text">
                     PELUANG USAHA PINELEAF
                 </div>

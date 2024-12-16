@@ -13,23 +13,23 @@ async function isUserAdmin(): Promise<boolean> {
 async function addFileToBucket(
   fileContent: Buffer | Blob | string
 ) {
-  let currentPage = 0;
-  let realPage;
-  const allPages = (
-    await (await createClient()).storage
-      .from("product")
-      .list("", { limit: 1000, offset: 0 })
-  ).data;
-  allPages?.map((page) => {
-    const pageName = page.name;
-    if (pageName != "page_" + currentPage + ".html") {
-      realPage = "page_" + currentPage + ".html";
-    }
-    currentPage++;
-  });
+  // let currentPage = 0;
+  // let realPage;
+  // const allPages = (
+  //   await (await createClient()).storage
+  //     .from("product")
+  //     .list("", { limit: 1000, offset: 0 })
+  // ).data;
+  // allPages?.map((page) => {
+  //   const pageName = page.name;
+  //   if (pageName != "page_" + currentPage + ".html") {
+  //     realPage = "page_" + currentPage + ".html";
+  //   }
+  //   currentPage++;
+  // });
   const { data, error } = await (await createClient()).storage
     .from("product")
-    .upload(realPage ?? "", fileContent, {
+    .upload(v4(), fileContent, {
       upsert: true, // Jika file sudah ada, akan menimpa file yang lama
     });
 

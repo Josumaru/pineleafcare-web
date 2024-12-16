@@ -53,7 +53,7 @@ const PaginationLink = ({
         size,
       }),
       className, 
-      isActive ? "text-black" : "text-white"
+      isActive ? "text-black bg-white" : "text-white"
     )}
     {...props}
   />

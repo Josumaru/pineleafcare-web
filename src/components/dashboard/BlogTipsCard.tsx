@@ -92,7 +92,7 @@ const BlogTipsCard: NextPage<Props> = ({ blog, editUrl = "/dashboard/blog" }) =>
           </Button>
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant={"destructive"} className="rounded-xl bg-red-500">
+              <Button variant={"destructive"} className="rounded-xl">
                 <LucideTrash2 />
               </Button>
             </DialogTrigger>
@@ -105,7 +105,7 @@ const BlogTipsCard: NextPage<Props> = ({ blog, editUrl = "/dashboard/blog" }) =>
               </DialogHeader>
               <DialogFooter>
                 <DialogClose>
-                  <Button ref={closeRef} variant={"default"}>Batalkan</Button>
+                  <Button ref={closeRef} variant={"default"} className="w-full mt-2 sm:mt-0">Batalkan</Button>
                 </DialogClose>
                 <Button
                   disabled={isLoading}
@@ -161,7 +161,7 @@ const BlogTipsCard: NextPage<Props> = ({ blog, editUrl = "/dashboard/blog" }) =>
                 {getInitials(blog.author?.name ?? "Overlogic")}
               </AvatarFallback>
             </Avatar>
-            <p className="text-lg font-bold text-white">
+            <p className="font-base font-semibold text-white">
               {blog.author?.name ?? "Overlogic"}
             </p>
           </div>

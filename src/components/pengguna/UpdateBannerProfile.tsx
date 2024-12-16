@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { NextPage } from "next";
-import { Edit } from "lucide-react";
+import { Edit, Pencil, PencilLine } from "lucide-react";
 import { Button } from "../ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "../ui/toast";
@@ -62,6 +62,10 @@ const UpdateBannerProfile: NextPage<Props> = ({}) => {
       });
     } finally {
       setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+      
     }
   };
 
@@ -69,11 +73,11 @@ const UpdateBannerProfile: NextPage<Props> = ({}) => {
     <>
       <Button
         onClick={handlePickFile}
-        className="z-20 flex justify-center bg-black p-3 hover:bg-white hover:text-black transition-colors text-white cursor-pointer mt-5"
+        className="z-20 flex justify-center bg-black rounded-xl hover:bg-white hover:text-black transition-colors text-white cursor-pointer mt-5"
         disabled={isUploading}
       >
-        {!isUploading && <Edit className="" />}
-        <p className="ml-2">
+        {!isUploading && <PencilLine className="" />}
+        {/* <p className=""> */}
           {isUploading ? (
             <div>
               <svg
@@ -93,12 +97,13 @@ const UpdateBannerProfile: NextPage<Props> = ({}) => {
                   fill="currentColor"
                 />
               </svg>
-              Menunggah
+            <p className="hidden lg:block">Menunggah</p>
+              
             </div>
           ) : (
-            "Ganti Baner"
+            <p className="hidden lg:block">Ganti Baner</p>
           )}
-        </p>
+        {/* </p> */}
       </Button>
       <input
         ref={fileInputRef}

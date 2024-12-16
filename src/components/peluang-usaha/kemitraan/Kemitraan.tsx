@@ -1,4 +1,5 @@
 import GradientTitle from "@/components/common/GradientTitle";
+import { Button } from "@/components/ui/button";
 import { LucideClipboard, LucideHandshake, LucideWallet } from "lucide-react";
 import { NextPage } from "next";
 const Kemitraan: NextPage = ({}) => {
@@ -19,9 +20,11 @@ const Kemitraan: NextPage = ({}) => {
                     Pionir solusi terbaik untuk kebutuhan perawatan sepatu, tas & stroller di Indonesia. Menggunakan produk berkualitas dan mendapatkan review 4.9 di marketplace Shopee & Tokopedia.
                 </p>
                 <div className="mt-5">
-                    <button className="bg-gray-500 text-white px-6 py-3 rounded-full font-bold">
-                        HUBUNGI SEKARANG
-                    </button>
+                    <a href="https://wa.me/6285867942389" target="_blank">
+                        <Button className=" text-black">
+                            HUBUNGI SEKARANG
+                        </Button>
+                    </a>
                 </div>
             </div>
 

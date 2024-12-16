@@ -11,7 +11,7 @@ const Page: NextPage<Props> = ({}) => {
   return (
     <div className="w-full flex items-center justify-center flex-col">
         <Header/>
-      <div className="max-w-7xl w-full">
+      <div className="max-w-7xl w-full px-2">
         <Kemitraan/>
         <PaketKemitraan/>
         <Testimoni/>

@@ -3,11 +3,11 @@ import { load } from "cheerio";
 
 export async function GET(req: Request): Promise<Response> {
   const url = new URL(req.url);
-  const page = url.searchParams.get("page");
+  const page = url.searchParams.get("file");
   const client = createClient();
   const file = (await client).storage
     .from("product")
-    .getPublicUrl(`page_${page}.html`);
+    .getPublicUrl(page ?? "");
   const response = await fetch(file.data.publicUrl);
   const data = await response.text();
   const $ = load(data);

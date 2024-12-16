@@ -61,7 +61,7 @@ const Page: NextPage = ({}) => {
                 404
               </h1>
               <p className="mb-4 text-3xl tracking-tight font-bold md:text-4xl text-white">
-                Terjadi Kesalaham
+                Terjadi Kesalahan
               </p>
               <p className="mb-4 text-lg font-light text-gray-400">
                 Maaf, halaman yang kamu cari tidak ditemukan

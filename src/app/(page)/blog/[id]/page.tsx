@@ -4,12 +4,14 @@ import BlogTipsCard from "@/components/blog/BlogTipsCard";
 import MinimalTiptapContent from "@/components/minimal-tiptap/content-tiptap";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatDate } from "@/lib/dateFormater";
 import { getInitials } from "@/lib/initialName";
 import { Blog } from "@/types/blog";
 import { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -21,6 +23,7 @@ const Page: NextPage<Props> = ({ params }) => {
   const [data, setData] = useState<Blog | null>(null);
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,16 +36,42 @@ const Page: NextPage<Props> = ({ params }) => {
       for (let i = 0; i < data.length; i++) {
         if (data[i].id === id) {
           setData(data[i]);
-          break;
+          setIsLoading(false);
+          return;
         }
       }
-      setIsLoading(false);
+      setError(true);
     };
     fetchData();
   }, []);
 
+  if(error){
+    return (
+      <section className="bg-black h-screen flex items-center justify-center">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+          <div className="mx-auto max-w-screen-sm text-center">
+            <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-white">
+              404
+            </h1>
+            <p className="mb-4 text-3xl tracking-tight font-bold md:text-4xl text-white">
+              Terjadi Kesalahan
+            </p>
+            <p className="mb-4 text-lg font-light text-gray-400">
+              Maaf, Blog yang kamu cari tidak ditemukan
+            </p>
+            <Link href="/blog">
+              <Button className="inline-flex text-black hover:bg-primary-800 my-4 bg-white hover:bg-slate-300 transition-colors">
+                Jelajahi lagi
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <div className="w-screen text-white flex justify-center mt-24">
+    <div className="w-full text-white flex justify-center mt-24 px-2">
       <div className="max-w-7xl w-full">
         {!loading && <BlogTipsBreadcrumb id={id} />}
         {loading ? (
@@ -57,24 +86,26 @@ const Page: NextPage<Props> = ({ params }) => {
                 height={1080}
                 className="w-full h-[450px] rounded-3xl object-cover"
               />
-              <div className="m-5 absolute top-0 flex items-center justify-center gap-2 drop-shadow-md shadow-black">
-                <Avatar className="">
-                  <AvatarImage
-                    src={data?.author?.image}
-                    alt={data?.author?.name}
-                    className="object-cover"
-                  />
-                  <AvatarFallback>
-                    {getInitials(data?.author?.name ?? "Overlogic")}
-                  </AvatarFallback>
-                </Avatar>
-                <p>{data.author.name}</p>
-              </div>
+              <Link href={`/pengguna/${data.userId}`}>
+                <div className="m-5 absolute top-0 flex items-center justify-center gap-2 drop-shadow-2xl shadow-black hover:cursor-pointer z-30">
+                  <Avatar className="">
+                    <AvatarImage
+                      src={data?.author?.image}
+                      alt={data?.author?.name}
+                      className="object-cover"
+                    />
+                    <AvatarFallback>
+                      {getInitials(data?.author?.name ?? "Overlogic")}
+                    </AvatarFallback>
+                  </Avatar>
+                  <p>{data.author.name}</p>
+                </div>
+              </Link>
             </div>
-            <p className="text-4xl font-semibold mt-2">{data.title}</p>
+            <p className="text-xl font-semibold mt-2">{data.title}</p>
             <div className="flex items-center gap-2">
               <p className="text-gray-400">
-                {formatDate(new Date(data.createdAt))}・Bacaan{" "}
+                {formatDate(new Date(data.updatedAt))}・Bacaan{" "}
                 {Math.round(data.content.length / 720)} Menit
               </p>
               <Badge>{data.category}</Badge>
@@ -85,8 +116,8 @@ const Page: NextPage<Props> = ({ params }) => {
               className="mt-10"
             />
 
-            <p className="text-3xl mt-5">Baca Juga</p>
-            <div className="grid grid-cols-3 gap-2 mt-2">
+            <p className="font-bold mt-5">Baca Juga</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 mt-2">
               {blogs.slice(0, 3).map((blog, index) => (
                 <BlogTipsCard key={index} blog={blog} />
               ))}

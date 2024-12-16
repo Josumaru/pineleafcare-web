@@ -37,9 +37,12 @@ const MessageBox: NextPage<Props> = ({}) => {
   
 
   return (
-    <div className="w-2/5 pt-9">
-      <p className="text-white font-bold">
+    <div className="w-full lg:w-2/5 pt-9">
+      <p className="text-white">
         Berminat bermitra dengan Pineleaf Care ?
+      </p>
+      <p className="text-[#ABABAB] text-sm mt-2">
+      Hubungi kami sekarang dan jadilah bagian dari kemitraan yang saling menguntungkan.
       </p>
       <div className="flex flex-col items-end mt-2">
         <Input

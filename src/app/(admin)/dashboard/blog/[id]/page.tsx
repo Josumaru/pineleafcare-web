@@ -40,6 +40,7 @@ const Page: NextPage<Props> = ({ params }) => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState<string | null>(null);
   const router = useRouter();
+  const [categoryBlogs, setCategoryBlogs] = useState<string[]>([]);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -60,7 +61,9 @@ const Page: NextPage<Props> = ({ params }) => {
           const blob = await response.blob();
 
           // Konversi Blob ke File
-          const file = new File([blob], data.image.split("/").pop(), { type: blob.type });
+          const file = new File([blob], data.image.split("/").pop(), {
+            type: blob.type,
+          });
           setTitle(data.title);
           setValue(data.content);
           setCategory(data.category);
@@ -73,9 +76,17 @@ const Page: NextPage<Props> = ({ params }) => {
             variant: "destructive",
             action: <ToastAction altText="Oke">Oke</ToastAction>,
           });
+          router.replace("/dashboard/blog/");
         }
       };
       fetchBlog();
+      const fetchCategory = async () => {
+        const res = await fetch("/api/category");
+        const data = await res.json();
+        const categories = await data.data.map((item:any) => item.name)
+        setCategoryBlogs(categories);
+      }
+      fetchCategory();
     }
   }, [id]);
 
@@ -105,7 +116,7 @@ const Page: NextPage<Props> = ({ params }) => {
         action: <ToastAction altText="Oke">Oke</ToastAction>,
       });
       return;
-    } else if (imagePreview == null) {
+    } else if (image == null) {
       toast({
         title: "Lengkapi Gambar",
         description: "Pastikan semua data telah terisi",
@@ -147,21 +158,21 @@ const Page: NextPage<Props> = ({ params }) => {
     setLoading(false);
   };
 
-  const categoryBlogs = [
-    "Kecantikan",
-    "Kebersihan",
-    "Tips",
-    "Kuliner",
-    "Kesehatan",
-    "Olahraga",
-    "Bisnis",
-    "Lifestyle",
-    "Sosial",
-    "Teknologi",
-    "Edukasi",
-    "Pendidikan",
-    "Kesehatan",
-  ];
+  // const categoryBlogs = [
+  //   "Kecantikan",
+  //   "Kebersihan",
+  //   "Tips",
+  //   "Kuliner",
+  //   "Kesehatan",
+  //   "Olahraga",
+  //   "Bisnis",
+  //   "Lifestyle",
+  //   "Sosial",
+  //   "Teknologi",
+  //   "Edukasi",
+  //   "Pendidikan",
+  //   "Kesehatan",
+  // ];
 
   if (
     image == null ||
@@ -194,9 +205,9 @@ const Page: NextPage<Props> = ({ params }) => {
   }
 
   return (
-    <div className="flex items-center flex-1 justify-center">
+    <div className="flex items-center flex-1 justify-center px-2">
       <form
-        className="p-10 max-w-7xl w-full"
+        className="max-w-7xl w-full"
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -207,9 +218,9 @@ const Page: NextPage<Props> = ({ params }) => {
             className="absolute inset-0 cursor-pointer flex items-center justify-center rounded-xl"
           >
             {image ? (
-              <span className="text-white bg-black/50 px-4 py-2 rounded-lg">
-                Ganti Gambar
-              </span>
+              <div className="text-white bg-black/50 hover:bg-black/70 transition-colors rounded-lg w-full h-full flex items-center justify-center">
+                <p>Ganti Gambar</p>
+              </div>
             ) : (
               <span className="text-gray-400">Unggah Gambar</span>
             )}

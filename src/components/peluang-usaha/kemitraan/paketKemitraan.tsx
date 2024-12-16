@@ -22,12 +22,14 @@ const PaketKemitraan: NextPage = ({}) => {
                         200.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
-                        <button className="flex items-center justify-between bg-costumBgCard text-white px-4 md:py-2 rounded-full border border-gray-600 hover:bg-gray-700 transition">
-                            <span className="mr-2">Konsultasi</span>
-                            <span className="px-3 md:px-5 bg-gray-700 rounded-full p-1">
-                                <LucideSend className="w-4 h-4" />
-                            </span>
-                        </button>
+                        <a href="https://wa.me/6285867942389" target="_blank">
+                            <button className="flex items-center justify-between bg-costumBgCard text-white p-1  md:py-2 rounded-full border border-gray-600 hover:bg-gray-700 transition">
+                                <span className="px-4">Konsultasi</span>
+                                <span className="px-3 md:px-5 bg-gray-700 rounded-full p-1">
+                                    <LucideSend className="w-4 h-4" />
+                                </span>
+                            </button>
+                        </a>
                     </div>
                 </div>
 
@@ -43,12 +45,14 @@ const PaketKemitraan: NextPage = ({}) => {
                         200.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
-                        <button className="flex items-center justify-between bg-costumBgCard text-white px-4  md:py-2 rounded-full border border-gray-600 hover:bg-gray-700 transition">
-                            <span className="mr-2">Konsultasi</span>
-                            <span className="px-3 md:px-5 bg-gray-700 rounded-full p-1">
-                                <LucideSend className="w-4 h-4" />
-                            </span>
-                        </button>
+                        <a href="https://wa.me/6285867942389" target="_blank">
+                            <button className="flex items-center justify-between bg-costumBgCard text-white p-1  md:py-2 rounded-full border border-gray-600 hover:bg-gray-700 transition">
+                                <span className="px-4">Konsultasi</span>
+                                <span className="px-3 md:px-5 bg-gray-700 rounded-full p-1">
+                                    <LucideSend className="w-4 h-4" />
+                                </span>
+                            </button>
+                        </a>
                     </div>
                 </div>
 
@@ -64,12 +68,14 @@ const PaketKemitraan: NextPage = ({}) => {
                         200.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
-                        <button className="flex items-center justify-between bg-costumBgCard text-white px-4  md:py-2 rounded-full border border-gray-600 hover:bg-gray-700 transition">
-                            <span className="mr-2">Konsultasi</span>
-                            <span className="px-3 md:px-5 bg-gray-700 rounded-full p-1">
-                                <LucideSend className="w-4 h-4" />
-                            </span>
-                        </button>
+                        <a href="https://wa.me/6285867942389" target="_blank">
+                            <button className="flex items-center justify-between bg-costumBgCard text-white p-1  md:py-2 rounded-full border border-gray-600 hover:bg-gray-700 transition">
+                                <span className="px-4">Konsultasi</span>
+                                <span className="px-3 md:px-5 bg-gray-700 rounded-full p-1">
+                                    <LucideSend className="w-4 h-4" />
+                                </span>
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

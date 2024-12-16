@@ -25,7 +25,7 @@ const BlogTipsBreadcrumb: NextPage<Props> = ({ id }) => {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink className="text-white">{id}</BreadcrumbLink>
+          <BreadcrumbLink className="text-white">{id.split("-").shift()}</BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

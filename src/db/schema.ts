@@ -13,9 +13,14 @@ export const markers = table("markers", {
   lng: t.numeric().notNull(),
   title: t.varchar({ length: 512 }),
   desc: t.varchar({ length: 512 }),
-  loc: t.varchar({ length: 32 }).notNull(),
-  province: t.varchar({ length: 128 }),
-  city: t.varchar({ length: 128 }),
+  loc: t.varchar({ length: 512 }).notNull(),
+  province: t.varchar({ length: 512 }),
+  city: t.varchar({ length: 512 }),
+});
+
+export const categories = table("categories", {
+  id: t.uuid().primaryKey(),
+  name: t.varchar({ length: 128 }).notNull(),
 });
 
 export const blogs = table("blogs", {

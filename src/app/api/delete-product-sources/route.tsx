@@ -11,7 +11,9 @@ async function isUserAdmin(): Promise<boolean> {
 
 // Fungsi untuk menghapus file dari bucket
 async function deleteFileFromBucket(filePath: string) {
-  const { data, error } = await (await createClient()).storage
+  const supabase = createClient()
+
+  const { data, error } = await (await supabase).storage
     .from("product")
     .remove([filePath]);
 
@@ -40,6 +42,9 @@ export async function DELETE(req: Request): Promise<Response> {
     // Mengambil data filePath dari body request
     const formData = await req.formData();
     const filePath = formData.get("filePath") as string;
+    console.log('====================================');
+    console.log(filePath);
+    console.log('====================================');
 
 
     if (!filePath) {
