@@ -22,6 +22,7 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 
 interface Props {}
+export const dynamic = "force-dynamic"
 
 const Page: NextPage<Props> = ({}) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);

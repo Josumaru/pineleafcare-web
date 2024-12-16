@@ -53,7 +53,7 @@ const Action = ({}) => {
               <div className="bg-white rounded-full flex items-center justify-center w-9 h-9">
                 <Avatar>
                   <AvatarImage
-                    src={user?.image}
+                    src={user?.image == "" ? "/banner/default.jpg" : user?.image ?? "/banner/default.jpg"}
                     alt={user?.name}
                     className="object-cover"
                   />

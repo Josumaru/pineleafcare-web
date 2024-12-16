@@ -10,6 +10,8 @@ interface Props {
   edit?: boolean
 }
 
+export const dynamic = "force-dynamic"
+
 const BlogTipsPengguna: NextPage<Props> = ({ id, edit = true }) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [isLoading, setIsLoading] = useState(true);

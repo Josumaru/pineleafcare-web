@@ -1,8 +1,8 @@
 import { db } from "@/db/db";
-import { users } from "@/db/schema";
+import { blogs, users } from "@/db/schema";
 import { User } from "@/types/user";
 import { createClient } from "@/utils/supabase/server";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 export const getUser = async (): Promise<User | null> => {
   const client = createClient();
@@ -18,6 +18,13 @@ export const getUser = async (): Promise<User | null> => {
       return null;
     }
 
+    const postCountResult = await db
+      .select({ count: sql<number>`COUNT(*)` })
+      .from(blogs)
+      .where(eq(blogs.author_id, data.user.id));
+
+    const postCount = postCountResult[0]?.count ?? 0;
+
     return {
       email: data.user.email ?? "",
       id: data.user.id ?? "",
@@ -26,6 +33,7 @@ export const getUser = async (): Promise<User | null> => {
       role: data.user.app_metadata.role ?? "user",
       banner: user[0].banner ?? "",
       verified: user[0].verified ?? false,
+      postCount,
     };
   } catch (error) {
     return null;

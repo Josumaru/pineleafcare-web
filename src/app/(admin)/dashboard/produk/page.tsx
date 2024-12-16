@@ -18,6 +18,7 @@ import { Pencil, Trash } from "lucide-react";
 import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 interface Props {}
+export const dynamic = "force-dynamic"
 
 const Page: NextPage<Props> = ({}) => {
   const [pages, setPages] = useState<any[] | null>(null);

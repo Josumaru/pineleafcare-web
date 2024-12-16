@@ -31,6 +31,8 @@ import { ComboBox } from "@/components/dashboard/ComboBox";
 
 interface Props {}
 
+export const dynamic = "force-dynamic"
+
 type MarkerData = {
   id: number;
   lat: number;
