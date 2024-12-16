@@ -46,7 +46,7 @@ export const AnimatedTestimonials = ({
               animate={{
                 opacity: index === active ? 1 : 0,
                 scale: index === active ? 2 : 0.9,
-                rotate: index === active ? 40 : 0, 
+                rotate: index === active ? 47 : 0, 
                 x: 0,
                 y: 0,
               }}

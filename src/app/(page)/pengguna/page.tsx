@@ -6,92 +6,94 @@ import Image from "next/image";
 import UpdateNameProfile from "@/components/pengguna/UpdateNameProfile";
 import UpdateBannerProfile from "@/components/pengguna/UpdateBannerProfile";
 import UpdateImageProfile from "@/components/pengguna/UpdateImageProfile";
+import { ImageConstants } from "@/constants/ImageConstants";
 
 const Page = async ({}) => {
   const user = await getUser();
 
   return (
     <div className="pt-20">
-      <div className="w-full h-[600px] flex justify-center">
-        <div className="max-w-7xl w-full flex justify-end absolute">
+      {/* Banner Section */}
+      <div className="relative w-full h-auto flex flex-col items-center">
+        {/* Update Banner Button */}
+        <div className="absolute top-0 right-0 px-3 z-20">
           <UpdateBannerProfile />
         </div>
-        <div className="w-full absolute z-10">
+
+        {/* Banner Image */}
+        <div className="w-full h-[150px] lg:h-[250px] relative">
           <Image
-            src={user?.banner ?? ""}
+            src={user?.banner ?? "/banner/default.jpg"}
             width={1024}
-            height={1024}
-            alt={user?.name ?? ""}
-            className="w-full h-auto object-cover aspect-[5/1]"
+            height={300}
+            alt={user?.name ?? "Banner"}
+            className="w-full h-full object-cover"
           />
         </div>
-        <div className="h-[550px] flex items-end w-full absolute justify-center">
-          <div className="w-full max-w-7xl z-20 flex items-end justify-between">
-            <div className="flex items-end">
+
+        {/* Profile Section */}
+        <div className="relative -mt-16 lg:-mt-16 flex flex-row items-center justify-between w-full max-w-7xl px-2 md:px-4 xl:px-0 rounded-lg">
+          <div className="relative flex flex-row items-center w-full">
+            {/* Profile Image */}
+            <div className="relative rounded-lg w-32 h-32 lg:w-40 lg:h-40">
               <Image
-                src={user?.image ?? ""}
-                width={320}
-                height={320}
-                alt={user?.name ?? ""}
-                className="w-72 h-72 object-cover bg-white rounded-[80px]"
+                src={user?.image ?? "/banner/default.jpg"}
+                width={160}
+                height={160}
+                alt={user?.name ?? "Profile"}
+                className="h-full w-full object-cover bg-white backdrop-blur-lg border-white shadow-md rounded-[40px]"
               />
-              <div className="absolute w-72 h-72 flex justify-end">
+              <div className="absolute bottom-0 right-0">
                 <UpdateImageProfile />
               </div>
-              <div className="mx-10">
-                <div>
-                  <div className="flex items-center justify-start gap-3">
-                    <p className="text-2xl font-bold text-white">
-                      {user?.name}
-                    </p>
-                    <UpdateNameProfile user={user!} />
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {user?.verified ? (
-                      <>
-                        <p className="text-gray-400">Terverifikasi</p>
-                        <Image
-                          src={IconConstants.verifiedIcon}
-                          alt="Terverifikasi"
-                          className="w-5 h-5"
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <p className="text-gray-400">Belum Terverifikasi</p>
-                        <Image
-                          src={IconConstants.verifiedIcon}
-                          alt="Terverifikasi"
-                          className="w-5 h-5 grayscale"
-                        />
-                      </>
-                    )}
-                  </div>
-                </div>
-                <div className="mt-2">
-                  {/* <Link href={"/profil/ubah"}>
-                    <Button className="bg-white hover:bg-gray-300 text-black">
-                      <LucideClipboardEdit />
-                      Ubah Profil Pengguna
-                    </Button>
-                  </Link> */}
-                  {/* <Button
-                    className="mx-2 bg-black hover:bg-[#ffffff2a] hover:text-white text-white"
-                    variant={"outline"}
-                  >
-                    Cek toko
-                  </Button> */}
+            </div>
+
+            {/* Name and Verification */}
+            <div className="lg:ml-4 ml-2 flex items-end flex-col">
+              <div className="mt-16 lg:mt-14">
+                <div className="flex items-start justify-start flex-col">
+                  <p className="text-lg lg:text-2xl font-bold text-white flex gap-2 items-center justify-center">
+                    {user?.name ?? "Overlogic Universe"} <UpdateNameProfile user={user!}/>
+                  </p>
+                  {user?.verified ? (
+                    <div className="flex items-center justify-center text-muted-foreground">
+                      Terverifikasi
+                      <Image
+                        src={IconConstants.verifiedIcon}
+                        alt="Verified"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center text-muted-foreground">
+                      Belum Terverifikasi
+                      <Image
+                        src={IconConstants.verifiedIcon}
+                        alt="Verified"
+                        className="h-4 w-4 grayscale"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center flex-col">
-              <p className="text-gray-300 text-bold text-xl">Postingan</p>
-              <p className="text-white text-3xl font-bold">5</p>
+          </div>
+          {/* Stats Section */}
+          <div className="mt-16 lg:mt-14 justify-center gap-10 text-center hidden lg:flex">
+            <div>
+              <p className="text-gray-500 text-sm">Postingan</p>
+              <p className="text-gray-800 text-xl font-bold">
+                {user?.postCount ?? 0}
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <BlogTipsPengguna id={user?.id ?? ""} />
+
+      {/* Blog Tips Section */}
+      <div className="mt-10">
+        <BlogTipsPengguna id={user?.id ?? ""} />
+      </div>
     </div>
   );
 };

@@ -1,25 +1,25 @@
-import GradientTitle from "@/components/common/GradientTitle";
+
+import Documentation from "@/components/training-support/Documentation";
+import { Pricing } from "@/components/training-support/Pricing";
 import { Spotlight } from "@/components/ui/spotlight";
-import { DocumentationImageConstants } from "@/constants/DocumentationImageConstants";
 import { NextPage } from "next";
-import Image from "next/image";
 
 interface Props {}
 
 const Page: NextPage<Props> = ({}) => {
   return (
-    <div>
-      <div className="flex items-start justify-center flex-col h-screen">
+    <div className="w-full">
+      <div className="flex items-start justify-center flex-col h-screen w-full">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="white"
         />
         <div className="h-[40rem] w-full rounded-md flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-7xl bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text font-bold">
+          <div className="flex flex-col items-center justify-center px-2">
+            <p className="text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text font-bold">
               TRAINING & SUPPORT
             </p>
-            <p className="text-white w-96 text-center">
+            <p className="text-muted-foreground lg:w-96 text-center">
               Rasakan banyak keuntungan ketika anda bergabung menjadi mitra
               PINELEAF dan tergabung di dalam lingkungan komunitas yang saling
               support.
@@ -39,64 +39,10 @@ const Page: NextPage<Props> = ({}) => {
           </div> */}
         </div>
       </div>
-      <div className="flex items-center justify-center flex-col">
-        <div className="py-5">
-          <GradientTitle text="DOKUMENTASI" />
-        </div>
-        <div className="w-full h-full transition-all grid grid-cols-3 grid-rows-3 max-w-7xl mx-auto gap-4 relative">
-          <Image
-            className="w-full h-full grayscale hover:grayscale-0 object-fill rounded-xl overflow-hidden col-span-1 row-span-1 aspect-square"
-            width={512}
-            height={512}
-            src={DocumentationImageConstants[0].src}
-            alt={"index"}
-          />
-          <Image
-            className="w-full grayscale hover:grayscale-0 transition-all h-full rounded-xl object-fill overflow-hidden col-span-1 row-span-1 aspect-square"
-            width={512}
-            height={512}
-            src={DocumentationImageConstants[0].src}
-            alt={"index"}
-          />
-          <Image
-            className="w-full h-full grayscale hover:grayscale-0 transition-all object-fill rounded-xl overflow-hidden col-span-1 row-span-1 aspect-square"
-            width={512}
-            height={512}
-            src={DocumentationImageConstants[0].src}
-            alt={"index"}
-          />
-          <Image
-            className="w-full h-full grayscale hover:grayscale-0 transition-all object-cover rounded-xl overflow-hidden col-span-2 row-span-1"
-            style={{ aspectRatio: "2 / 1" }}
-            width={512}
-            height={256}
-            src={DocumentationImageConstants[0].src}
-            alt={"index"}
-          />
-          <Image
-            className="w-full h-full grayscale hover:grayscale-0 transition-all object-fill rounded-xl overflow-hidden col-span-1 row-span-1 aspect-square"
-            width={512}
-            height={512}
-            src={DocumentationImageConstants[0].src}
-            alt={"index"}
-          />
-          <Image
-            className="w-full h-full grayscale hover:grayscale-0 transition-all object-fill rounded-xl overflow-hidden col-span-1 row-span-1 aspect-square"
-            width={512}
-            height={512}
-            src={DocumentationImageConstants[0].src}
-            alt={"index"}
-          />
-          <Image
-            className="w-full h-full grayscale hover:grayscale-0 transition-all object-cover rounded-xl overflow-hidden col-span-2 row-span-1"
-            style={{ aspectRatio: "2 / 1" }}
-            width={512}
-            height={256}
-            src={DocumentationImageConstants[0].src}
-            alt={"index"}
-          />
-        </div>
+      <div>
+        <Pricing />
       </div>
+      <Documentation/>
     </div>
   );
 };

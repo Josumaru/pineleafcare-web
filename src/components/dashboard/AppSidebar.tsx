@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, BookAudioIcon, User2 } from "lucide-react"
+import { Calendar, Home, Inbox, Search, BookAudioIcon, User2, MapPinIcon } from "lucide-react"
 
 import {
   Sidebar,
@@ -27,6 +27,11 @@ const items = [
     title: "Shopee Page Sources",
     url: "/dashboard/produk",
     icon: Inbox,
+  },
+  {
+    title: "Map Mitra",
+    url: "/dashboard/map",
+    icon: MapPinIcon,
   },
 ]
 

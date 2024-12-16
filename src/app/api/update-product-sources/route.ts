@@ -90,7 +90,7 @@ export async function POST(req: Request): Promise<Response> {
       );
     }
 
-    const result = await addFileToBucket(fileContent, fileName);
+    const result = await updateFileInBucket( fileName, fileContent);
 
     if (!result) {
       return new Response(

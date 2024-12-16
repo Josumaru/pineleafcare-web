@@ -2,13 +2,15 @@
 import { Blog } from "@/types/blog";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import BlogTipsCard from "@/components/dashboard/BlogTipsCard";
+import BlogTipsCard from "../blog/BlogTipsCard";
+import BlogTipsCardEdit from "@/components/dashboard/BlogTipsCard";
 
 interface Props {
   id: string;
+  edit?: boolean
 }
 
-const BlogTipsPengguna: NextPage<Props> = ({ id }) => {
+const BlogTipsPengguna: NextPage<Props> = ({ id, edit = true }) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,8 +34,8 @@ const BlogTipsPengguna: NextPage<Props> = ({ id }) => {
     fetchData();
   }, [id]);
   return (
-    <div className="w-full mt-5 flex items-center justify-center flex-col">
-      <p className="text-gray-300 text-xl w-full max-w-7xl">Postingan</p>
+    <div className="w-full mt-5 flex items-center justify-center flex-col px-2">
+      <p className="text-gray-300 text-xl w-full max-w-7xl font-bold">Postingan</p>
       {isLoading ? (
         <div className="h-96 text-white flex items-center justify-center">
           <svg
@@ -56,9 +58,9 @@ const BlogTipsPengguna: NextPage<Props> = ({ id }) => {
           Memuat
         </div>
       ) : (
-        <div className="grid grid-cols-3 gap-2 mt-2 max-w-7xl w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 mt-2 max-w-7xl w-full">
           {blogs.map((blog, index) => (
-            <BlogTipsCard key={index} blog={blog} editUrl="/blog/edit"/>
+            edit ? <BlogTipsCardEdit key={index} blog={blog} editUrl="/blog/edit"/> : <BlogTipsCard key={index} blog={blog} />
           ))}
         </div>
       )}

@@ -35,7 +35,9 @@ export async function POST(req: Request) {
     const currentBanner = (await supabase).from("users").select("banner").eq("id", user.id).single()
     const path = (await currentBanner).data?.banner
 
-    await (await supabase).storage.from("banner").remove([path.split(`banner/`).pop()])
+    if(path){
+      await (await supabase).storage.from("banner").remove([path.split(`banner/`).pop()])
+    }
 
     const image = (await supabase).storage.from("banner").getPublicUrl(data.path).data.publicUrl;
     await (await supabase).from("users").update({ banner: image }).eq("id", user.id);
@@ -45,7 +47,9 @@ export async function POST(req: Request) {
     const currentProfile = (await supabase).from("users").select("image").eq("id", user.id).single()
     const path = (await currentProfile).data?.image
 
-    await (await supabase).storage.from("profile").remove([path.split(`profile/`).pop()])
+    if(path){
+      await (await supabase).storage.from("profile").remove([path.split(`profile/`).pop()])
+    }
 
     const image = (await supabase).storage.from("profile").getPublicUrl(data.path).data.publicUrl;
     await (await supabase).from("users").update({ image: image }).eq("id", user.id);;

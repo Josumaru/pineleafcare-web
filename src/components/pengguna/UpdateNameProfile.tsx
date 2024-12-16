@@ -55,7 +55,7 @@ const UpdateNameProfile: NextPage<Props> = ({ user }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <PencilLineIcon className="text-white hover:text-gray-400 transition-colors cursor-pointer" />
+        <PencilLineIcon className="text-white hover:text-gray-400 transition-colors cursor-pointer" width={16} height={16}/>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-black border-slate-800">
         <DialogHeader>

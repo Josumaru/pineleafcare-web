@@ -1,7 +1,8 @@
 import dynamic from 'next/dynamic';
 import { NextPage } from "next";
+import GradientTitle from '@/components/common/GradientTitle';
 
-const AnimatedTestimonials = dynamic(() => import('@/components/ui/animated-testimonials'), { ssr: false });
+const AnimatedTestimonials = dynamic(() => import('@/components/ui/animated-testimonials'), { ssr: true });
 
 const testimoni: NextPage = () => {
   // Data Testimoni dalam bentuk array
@@ -44,12 +45,10 @@ const testimoni: NextPage = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-16">
+    <section className="bg-black text-white pt-10 w-full">
       {/* Bagian Heading */}
-      <div className="text-center mb-12">
-        <h3 className="text-6xl font-extrabold bg-gradient-to-r from-[#ABABAB] via-white to-[#ABABAB] inline-block text-transparent bg-clip-text">
-          Testimoni
-        </h3>
+      <div className="text-center">
+        <GradientTitle text='Testimoni'/>
       </div>
 
       {/* Komponen Testimoni */}

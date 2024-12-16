@@ -121,13 +121,13 @@ const Page: NextPage<Props> = ({}) => {
       Memuat
     </div>
   ) : (
-    <div className="p-10 w-full">
+    <div className="pt-10 px-3 w-full">
       <Table className="w-full">
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>Daftar Pengguna</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-">Avatar</TableHead>
-            <TableHead className="w-">ID USER</TableHead>
+            <TableHead className="hidden lg:block">ID USER</TableHead>
             <TableHead>Nama Pengguna</TableHead>
             <TableHead className="text-right">Status Verifikasi</TableHead>
           </TableRow>
@@ -148,7 +148,7 @@ const Page: NextPage<Props> = ({}) => {
                     </AvatarFallback>
                   </Avatar>
                 </TableCell>
-                <TableCell className="font-medium">{user.id}</TableCell>
+                <TableCell className="font-medium hidden lg:block">{user.id}</TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell className="text-right">
                   <Button

@@ -33,6 +33,7 @@ const Page = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [value, setValue] = useState<Content>("");
   const [open, setOpen] = useState(false);
+  const [categoryBlogs, setCategoryBlogs] = useState<string[]>([]);
 
   useEffect(() => {
     console.log(value?.toString());
@@ -66,7 +67,7 @@ const Page = () => {
         action: <ToastAction altText="Oke">Oke</ToastAction>,
       });
       return;
-    } else if (imagePreview == null) {
+    } else if (image == null) {
       toast({
         title: "Lengkapi Gambar",
         description: "Pastikan semua data telah terisi",
@@ -109,24 +110,19 @@ const Page = () => {
     setLoading(false);
   };
 
-  const categoryBlogs = [
-    "Kecantikan",
-    "Kebersihan",
-    "Tips",
-    "Kuliner",
-    "Kesehatan",
-    "Olahraga",
-    "Bisnis",
-    "Lifestyle",
-    "Sosial",
-    "Teknologi",
-    "Edukasi",
-    "Pendidikan",
-    "Kesehatan",
-  ];
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const res = await fetch("/api/category");
+      const data = await res.json();
+      const categories = await data.data.map((item:any) => item.name)
+      setCategoryBlogs(categories);
+    }
+    fetchCategory();
+  }, [])
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center px-2">
       <form
         className="pt-10 mt-20 max-w-7xl w-full"
         onSubmit={handleSubmit}
@@ -139,9 +135,9 @@ const Page = () => {
             className="absolute inset-0 cursor-pointer flex items-center justify-center rounded-xl"
           >
             {image ? (
-              <span className="text-white bg-black/50 px-4 py-2 rounded-lg">
-                Ganti Gambar
-              </span>
+              <div className="text-white bg-black/50 hover:bg-black/70 transition-colors rounded-lg w-full h-full flex items-center justify-center">
+                <p>Ganti Gambar</p>
+              </div>
             ) : (
               <span className="text-gray-400">Unggah Gambar</span>
             )}
@@ -178,7 +174,7 @@ const Page = () => {
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="w-full justify-between mb-5"
+              className="w-full justify-between mb-5 bg-black"
             >
               {category
                 ? categoryBlogs.find(

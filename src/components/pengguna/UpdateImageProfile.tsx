@@ -79,7 +79,7 @@ const UpdateImageProfile: NextPage<Props> = ({}) => {
     <>
       <Button
         onClick={handlePickFile}
-        className="bg-black hover:bg-white hover:text-black transition-colors text-white cursor-pointer w-14 h-14 rounded-full border-black border flex items-center justify-center"
+        className="bg-white hover:bg-black hover:text-white text-black transition-colors cursor-pointer w-8 h-8 rounded-full border-black border flex items-center justify-center"
         disabled={isUploading}
       >
         {isUploading ? (
@@ -103,7 +103,7 @@ const UpdateImageProfile: NextPage<Props> = ({}) => {
             </svg>
           </div>
         ) : (
-          <PencilLineIcon width={32} height={32}/>
+          <PencilLineIcon width={27} height={27}/>
         )}
       </Button>
       <input

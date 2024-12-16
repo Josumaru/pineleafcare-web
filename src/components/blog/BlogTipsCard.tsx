@@ -17,11 +17,11 @@ const BlogTipsCard: NextPage<Props> = ({ blog }) => {
   const formattedDate = formatDate(date);
 
   return (
-    <Link href={`/blog/${blog.id}`}>
-      <div
-        className="border cursor-pointer hover:border-opacity-35 transition-all group aspect-square border-white p-1 rounded-[24px] border-opacity-10"
-        style={{ aspectRatio: 1 / 1 }}
-      >
+    <div
+      className="border cursor-pointer hover:border-opacity-35 transition-all group aspect-square border-white p-1 rounded-[24px] border-opacity-10"
+      style={{ aspectRatio: 1 / 1 }}
+    >
+      <Link href={`/blog/${blog.id}`}>
         <div className="relative h-2/3 w-full">
           <Image
             className="object-cover grayscale w-full h-full rounded-[20px] group-hover:grayscale-0 transition-all"
@@ -34,12 +34,16 @@ const BlogTipsCard: NextPage<Props> = ({ blog }) => {
             {blog.category}
           </div>
         </div>
-        <div className="mt-2">
+      </Link>
+      <div className="mt-2">
+        <Link href={`/blog/${blog.id}`}>
           <p className="text-gray-400 text-sm">
             {formattedDate}・Bacaan {Math.round(blog.content.length / 720)}{" "}
             Menit
           </p>
-          <TiptapContentCard content={blog.content}/>
+          <TiptapContentCard content={blog.content} />
+        </Link>
+        <Link href={`/pengguna/${blog.userId}`}>
           <div className="flex items-center gap-2">
             <Avatar>
               <AvatarImage
@@ -51,11 +55,13 @@ const BlogTipsCard: NextPage<Props> = ({ blog }) => {
                 {getInitials(blog.author?.name ?? "Overlogic")}
               </AvatarFallback>
             </Avatar>
-            <p className="text-lg font-bold text-white">{blog.author?.name ?? "Overlogic"}</p>
+            <p className="font-semibold text-white hover:text-[#ffffffa6] hover:underline transition-transform">
+              {blog.author?.name ?? "Overlogic"}
+            </p>
           </div>
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 };
 

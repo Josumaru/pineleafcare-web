@@ -73,7 +73,7 @@ const Page: NextPage<Props> = ({ params }) => {
               404
             </h1>
             <p className="mb-4 text-3xl tracking-tight font-bold md:text-4xl text-white">
-              Terjadi Kesalaham
+              Terjadi Kesalahan
             </p>
             <p className="mb-4 text-lg font-light text-gray-400">
               Maaf, Pengguna yang kamu cari tidak ditemukan
@@ -91,73 +91,80 @@ const Page: NextPage<Props> = ({ params }) => {
 
   return (
     <div className="pt-20">
-      <div className="w-full h-[600px] flex justify-center">
-        <div className="w-full absolute z-10">
+      {/* Banner Section */}
+      <div className="relative w-full h-auto flex flex-col items-center">
+
+        {/* Banner Image */}
+        <div className="w-full h-[150px] lg:h-[250px] relative">
           <Image
-            src={user.banner ?? ""}
-            width={1920}
-            height={1080}
-            alt={user.name ?? ""}
-            className="w-full h-auto object-cover aspect-[5/1] bg-[#353535]"
+            src={user?.banner ?? "/banner/default.jpg"}
+            width={1024}
+            height={300}
+            alt={user?.name ?? "Banner"}
+            className="w-full h-full object-cover"
           />
         </div>
-        <div className="h-[550px] flex items-end w-full absolute justify-center">
-          <div className="w-full max-w-7xl z-20 flex items-end justify-between">
-            <div className="flex items-end">
+
+        {/* Profile Section */}
+        <div className="relative -mt-16 lg:-mt-16 flex flex-row items-center justify-between w-full max-w-7xl px-2 md:px-4 xl:px-0 rounded-lg">
+          <div className="relative flex flex-row items-center w-full">
+            {/* Profile Image */}
+            <div className="relative rounded-lg w-32 h-32 lg:w-40 lg:h-40">
               <Image
-                src={user.image ?? ""}
-                width={320}
-                height={320}
-                alt={user.name ?? ""}
-                className="w-72 h-72 object-cover bg-white rounded-[80px]"
-                key={user.id} // Key added here for unique identification of image
+                src={user?.image ?? "/banner/default.jpg"}
+                width={160}
+                height={160}
+                alt={user?.name ?? "Profile"}
+                className="h-full w-full object-cover bg-white backdrop-blur-lg border-white shadow-md rounded-[40px]"
               />
-              <div className="mx-10">
-                <div>
-                  <div className="flex items-center justify-start gap-3">
-                    <p
-                      className="text-2xl font-bold text-white"
-                      key={`name-${user.id}`}
-                    >
-                      {user.name}
-                    </p>
-                  </div>
-                  <div
-                    className="flex items-center gap-2"
-                    key={`verified-status-${user.id}`}
-                  >
-                    {user.verified ? (
-                      <>
-                        <p className="text-gray-400">Terverifikasi</p>
-                        <Image
-                          src={IconConstants.verifiedIcon}
-                          alt="Terverifikasi"
-                          className="w-5 h-5"
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <p className="text-gray-400">Belum Terverifikasi</p>
-                        <Image
-                          src={IconConstants.verifiedIcon}
-                          alt="Terverifikasi"
-                          className="w-5 h-5 grayscale"
-                        />
-                      </>
-                    )}
-                  </div>
+            </div>
+
+            {/* Name and Verification */}
+            <div className="lg:ml-4 ml-2 flex items-end flex-col">
+              <div className="mt-16 lg:mt-14">
+                <div className="flex items-start justify-start flex-col">
+                  <p className="text-lg lg:text-2xl font-bold text-white">
+                    {user?.name ?? "Overlogic Universe"}
+                  </p>
+                  {user?.verified ? (
+                    <div className="flex items-center justify-center text-muted-foreground">
+                      Terverifikasi
+                      <Image
+                        src={IconConstants.verifiedIcon}
+                        alt="Verified"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center text-muted-foreground">
+                      Belum Terverifikasi
+                      <Image
+                        src={IconConstants.verifiedIcon}
+                        alt="Verified"
+                        className="h-4 w-4 grayscale"
+                      />
+                    </div>
+                  )}
                 </div>
-                <div className="mt-2"></div>
               </div>
             </div>
-            <div className="flex items-center justify-center flex-col">
-              <p className="text-gray-300 text-bold text-xl">Postingan</p>
-              <p className="text-white text-3xl font-bold">{user.postCount}</p>
+          </div>
+          {/* Stats Section */}
+          <div className="mt-16 lg:mt-14 justify-center gap-10 text-center hidden lg:flex">
+            <div>
+              <p className="text-gray-500 text-sm">Postingan</p>
+              <p className="text-white text-xl font-bold">
+                {user?.postCount ?? 0}
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <BlogTipsPengguna key={user.id} id={user.id ?? ""} />
+
+      {/* Blog Tips Section */}
+      <div className="">
+        <BlogTipsPengguna id={user?.id ?? ""} edit={false}/>
+      </div>
     </div>
   );
 };
