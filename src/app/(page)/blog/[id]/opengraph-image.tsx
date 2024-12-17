@@ -9,7 +9,9 @@ export const contentType = "image/png";
 
 export default async function Image({ params }: { params: { id: string } }) {
   const responses = await fetch(
-    `https://pineleaf.josumaru.my.id/api/get-all-blog/`
+    `https://pineleaf.josumaru.my.id/api/get-all-blog/`, {
+      cache: "no-cache",
+    }
   );
   const data = await responses.json();
   let post;
@@ -38,7 +40,7 @@ export default async function Image({ params }: { params: { id: string } }) {
             height: "100%",
           }}
         >
-          No Image Found
+          Blog Tidak Ditemukan
         </div>
       ),
       {

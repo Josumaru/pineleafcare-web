@@ -30,7 +30,9 @@ const Page: NextPage<Props> = ({ params }) => {
     const fetchData = async () => {
       const id = (await params).id;
       setId(id);
-      const response = await fetch(`/api/get-all-blog`);
+      const response = await fetch(`/api/get-all-blog`, {
+        cache: "no-cache",
+      });
       const data = await response.json();
       setBlogs(data);
       for (let i = 0; i < data.length; i++) {

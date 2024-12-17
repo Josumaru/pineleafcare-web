@@ -27,6 +27,10 @@ export function Pricing() {
                   <FeatureItem>
                     TEHNIK PENCUCIAN CANVAS, SUEDE, NUBUCK, WOVEN
                   </FeatureItem>
+                  <FeatureItem>Buku SOP & Manajemen Shoes Care</FeatureItem>
+                    <FeatureItem>Konsultasi selamanya</FeatureItem>
+                    <FeatureItem>Garansi Pasti Bisa</FeatureItem>
+                    <FeatureItem>Potongan harga produk</FeatureItem>
                 </ul>
                 <PricingButton noCardRequired={true}>
                   Hubungi Sekarang
@@ -81,6 +85,10 @@ export function Pricing() {
                     <FeatureItem>
                       TEHNIK PENCUCIAN CANVAS, SUEDE, NUBUCK, WOVEN
                     </FeatureItem>
+                    <FeatureItem>Buku SOP & Manajemen Shoes Care</FeatureItem>
+                    <FeatureItem>Konsultasi selamanya</FeatureItem>
+                    <FeatureItem>Garansi Pasti Bisa</FeatureItem>
+                    <FeatureItem>Potongan harga produk</FeatureItem>
                   </ul>
                   <PricingButton noCardRequired={true}>
                     Hubungi Sekarang
@@ -109,7 +117,10 @@ export function Pricing() {
                     <FeatureItem>TEORI & PRAKTEK MENCUCI BABY GEAR</FeatureItem>
                     <FeatureItem>MENGHILANGKAN NODA JAMUR / KARAT / DARAH</FeatureItem>
                     <FeatureItem>TEHNIK PENCUCIAN CANVAS, SUEDE, NUBUCK, WOVEN</FeatureItem>
-
+                    <FeatureItem>Buku SOP & Manajemen Shoes Care</FeatureItem>
+                    <FeatureItem>Konsultasi selamanya</FeatureItem>
+                    <FeatureItem>Garansi Pasti Bisa</FeatureItem>
+                    <FeatureItem>Potongan harga produk</FeatureItem>
                 </ul>
                 <PricingButton noCardRequired={true}>
                   Hubungi Sekarang
