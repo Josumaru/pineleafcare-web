@@ -2,6 +2,8 @@ import { db } from "@/db/db";
 import { blogs } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: Request): Promise<Response> {
   const url = new URL(req.url);
   const id = url.searchParams.get("id");

@@ -33,7 +33,7 @@ const BlogTipsHeader: NextPage<Props> = ({ blog }) => {
                 <div className="lg:hidden block">
                   <div className="w-full flex flex-col pb-2">
                     <div>
-                      <p className="text-[#878787] shadow w-full">
+                      <p className="text-[#878787] drop-shadow w-full">
                         {formattedDate}・Bacaan{" "}
                         {Math.round(blog.content.length / 720)} Menit
                       </p>

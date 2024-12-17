@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+export const dynamic = "force-dynamic";
 
 async function getBucketFiles(bucketName: string) {
   const { data, error } = await (await createClient()).storage

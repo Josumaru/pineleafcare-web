@@ -3,6 +3,8 @@ import { blogs, users } from "@/db/schema";
 import { createClient } from "@/utils/supabase/server";
 import { sql } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 // Fungsi untuk memeriksa apakah pengguna adalah admin
 async function isUserAdmin(userId: string): Promise<boolean> {
   const supabase = createClient();

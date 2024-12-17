@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { load } from "cheerio";
+export const dynamic = "force-dynamic";
 
 export async function GET(req: Request): Promise<Response> {
   const url = new URL(req.url);

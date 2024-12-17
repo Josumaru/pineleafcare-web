@@ -1,5 +1,10 @@
 import { createClient } from "@/utils/supabase/server";
 import { v4 } from "uuid";
+
+
+export const dynamic = "force-dynamic";
+
+
 // Fungsi untuk memeriksa apakah pengguna adalah admin
 async function isUserAdmin(): Promise<boolean> {
   const supabase = createClient();

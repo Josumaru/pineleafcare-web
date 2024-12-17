@@ -18,7 +18,7 @@ const Page: NextPage = ({}) => {
       try {
         setError(null);
         const res = await fetch("/api/get-all-blog", {
-          cache: "no-store",
+          cache: "no-cache",
         });
         const data = await res.json();
         setBlogs(data);
