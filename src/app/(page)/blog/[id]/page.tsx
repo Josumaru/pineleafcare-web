@@ -31,7 +31,7 @@ const Page: NextPage<Props> = ({ params }) => {
       const id = (await params).id;
       setId(id);
       const response = await fetch(`/api/get-all-blog`, {
-        cache: "no-cache",
+        cache: "no-store",
       });
       const data = await response.json();
       setBlogs(data);

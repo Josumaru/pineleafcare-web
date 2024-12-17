@@ -92,7 +92,7 @@ const Page: NextPage<Props> = ({}) => {
         city != ""
       ) {
         response = await fetch("/api/marker", {
-          cache: "no-cache",
+          cache: "no-store",
           method: "PUT",
           body: formData,
         });
