@@ -32,7 +32,7 @@ const UpdateBannerProfile: NextPage<Props> = ({}) => {
 
       const response = await fetch("/api/update-user-image", {
         method: "POST",
-        cache: "no-cache",
+        cache: "no-store",
         body: formData,
       });
 

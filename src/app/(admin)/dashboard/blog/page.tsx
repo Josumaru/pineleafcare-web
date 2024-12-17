@@ -37,10 +37,10 @@ const Page: NextPage<Props> = ({}) => {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/get-all-blog",{
-          cache: "no-cache",
+          cache: "no-store",
         });
         const catRes = await fetch("/api/category", {
-          cache: "no-cache",
+          cache: "no-store",
         });
         const catData = await catRes.json();
         const data = await res.json();

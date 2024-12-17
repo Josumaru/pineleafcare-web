@@ -10,7 +10,7 @@ export const contentType = "image/png";
 export default async function Image({ params }: { params: { id: string } }) {
   const responses = await fetch(
     `https://pineleaf.josumaru.my.id/api/get-all-blog/`, {
-      cache: "no-cache",
+      cache: "no-store",
     }
   );
   const data = await responses.json();

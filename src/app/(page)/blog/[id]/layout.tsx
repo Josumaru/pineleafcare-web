@@ -1,7 +1,7 @@
 export async function generateMetadata({ params }: { params: { id: string } }) {
     // Fetch data dari API
     const response = await fetch(`https://pineleaf.josumaru.my.id/api/get-all-blog`, {
-      cache: "no-cache",
+      cache: "no-store",
     });
     const data = await response.json();
   
