@@ -21,7 +21,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Pineleaf",
   description: "Pionir Solusi terbaik untuk kebutuhan perawatan sepatu, tas & stroller di Indonesia.",
-  
+  keywords: ["pineleaf", "sepatu", "tas", "stroller", "indonesia"],
 };
 
 export default function RootLayout({

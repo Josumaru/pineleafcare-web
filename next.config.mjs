@@ -3,6 +3,17 @@ const nextConfig = {
   experimental: {
 
   },
+  headers: () => [
+    {
+      source: '/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'no-store',
+        },
+      ],
+    },
+  ],
   images: {
     remotePatterns: [
       {
