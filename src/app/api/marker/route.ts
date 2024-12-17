@@ -2,6 +2,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
+export const dynamic = "force-dynamic";
 
 // Fungsi untuk memeriksa apakah pengguna adalah admin
 async function isUserAdmin(): Promise<boolean> {
