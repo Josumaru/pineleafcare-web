@@ -222,15 +222,15 @@ const Page: NextPage<Props> = ({}) => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] bg-black border-slate-800">
               <DialogHeader>
-                <DialogTitle className="text-white">Ubah Nama</DialogTitle>
+                <DialogTitle className="text-white">Tambah Kategori</DialogTitle>
                 <DialogDescription className="text-slate-200">
-                  Ubah namamu Profilmu disini. Klik simpan ketika sudah selesai
+                  Tambahkan kategori disini. Klik tombol dibawah ketika sudah selesai
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="name" className="text-right text-white">
-                    Nama
+                    Kategori
                   </Label>
                   <Input
                     id="name"
@@ -269,7 +269,7 @@ const Page: NextPage<Props> = ({}) => {
                       Memuat
                     </div>
                   ) : (
-                    "Simpan Perubahan"
+                    "Tambah"
                   )}
                 </Button>
               </DialogFooter>

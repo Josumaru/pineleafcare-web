@@ -1,80 +1,44 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import GradientTitle from "@/components/common/GradientTitle";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import HLSPlayer from "../hls/HLSPlayer";
 
 export function ScrollBanner() {
-  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleScroll = () => {
-    if (!videoRef.current) return;
-    const videoElement = videoRef.current;
-    const rect = videoElement.getBoundingClientRect();
-
-    // Periksa apakah video terlihat di dalam viewport
-    if (rect.top +1080 >= 0 && rect.bottom <= window.innerHeight+1080) {
-      if (videoElement.paused) {
-        videoElement
-          .play()
-          .catch((error) => console.error("Autoplay gagal:", error));
-      }
-    } else {
-      if (!videoElement.paused) {
-        videoElement.pause();
-      }
-    }
-  };
-
-  const enableSound = () => {
-    if (!videoRef.current) return;
-    videoRef.current.muted = false; // Mengaktifkan suara
-    videoRef.current.play().catch((error) => console.error("Play gagal:", error));
-    // Hapus listener setelah suara diaktifkan
-    document.removeEventListener("click", enableSound);
-  };
-
-  useEffect(() => {
-    // Tambahkan event listener scroll
-    window.addEventListener("scroll", handleScroll);
-
-    // Menunggu interaksi pengguna untuk mengaktifkan suara
-    document.addEventListener("click", enableSound);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("click", enableSound);
-    };
-  }, []);
+  const items = [
+    {
+      header: <HLSPlayer src="/video/suede/8c8859d4139542b584d2efd55d603103/suede.m3u8"/>
+      // (
+      //   <video
+      //     ref={videoRef}
+      //     loop
+      //     autoPlay
+      //     muted
+      //     className="w-full h-full object-cover rounded-xl"
+      //     src="/video/docs_1.mp4"
+      //   />
+      // ),
+    },
+  ];
 
   return (
-    <div className="flex flex-col overflow-hidden">
-      <ContainerScroll
-        titleComponent={
-          <>
-            <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Video Pendek <br />
-              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                Suede
-              </span>
-            </h1>
-          </>
-        }
-      >
-        <div className="bg-black w-full rounded-xl flex justify-center items-center overflow-hidden landscape">
-          <video
-            ref={videoRef} // Ref dengan tipe <HTMLVideoElement>
-            className="rounded-xl object-contain object-center h-[60rem] -translate-y-1/2 md:h-[80rem] flex items-center justify-center relative px-2 md:px-20 hover:cursor-pointer"
-            playsInline
-            muted
-            preload="auto"
-            draggable={false}
-          >
-            <source src="/video/suede.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute">
-            <p>Klik untuk aktifkan suara</p>
-          </div>
+    <div className="flex flex-col overflow-hidden w-full">
+      <div className="w-full flex items-center justify-center flex-col">
+        <div className="py-5">
+          <GradientTitle text="TEKNIK SUEDE" />
         </div>
-      </ContainerScroll>
+        <BentoGrid className="max-w-7xl mx-auto mt-10 w-full">
+          {items.map((item, i) => (
+            <BentoGridItem
+              key={i}
+              header={item.header}
+              className={"col-span-3 row-span-2"}
+            />
+          ))}
+        </BentoGrid>
+      </div>
     </div>
   );
 }

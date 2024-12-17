@@ -3,6 +3,7 @@ import { users } from "@/db/schema";
 import { User } from "@/types/user";
 import { createClient } from "@/utils/supabase/server";
 import { eq } from "drizzle-orm";
+
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request): Promise<Response> {

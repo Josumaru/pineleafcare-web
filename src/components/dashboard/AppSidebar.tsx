@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, BookAudioIcon, User2, MapPinIcon } from "lucide-react"
+import { Calendar, Home, Inbox, Search, BookAudioIcon, User2, MapPinIcon, HomeIcon } from "lucide-react"
 
 import {
   Sidebar,
@@ -32,6 +32,11 @@ const items = [
     title: "Map Mitra",
     url: "/dashboard/map",
     icon: MapPinIcon,
+  },
+  {
+    title: "Beranda",
+    url: "/beranda",
+    icon: HomeIcon,
   },
 ]
 
