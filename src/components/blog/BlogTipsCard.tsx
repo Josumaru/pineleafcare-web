@@ -30,7 +30,7 @@ const BlogTipsCard: NextPage<Props> = ({ blog }) => {
             height={1080}
             alt={blog.title}
           />
-          <div className="absolute top-2 font-bold px-5 left-2 bg-white bg-opacity-50 text-sm py-1 rounded-[15px] text-bold">
+          <div className="absolute top-2 font-bold px-5 left-2 bg-white bg-opacity-50 text-black text-sm py-1 rounded-[15px] text-bold">
             {blog.category}
           </div>
         </div>

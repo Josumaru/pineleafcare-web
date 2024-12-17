@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="flex w-full items-center justify-center flex-col ">
       <Hero />
-
+      <ScrollBanner />
       <Banner />
       <About />
       <Produk />

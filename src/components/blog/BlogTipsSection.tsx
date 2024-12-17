@@ -27,10 +27,9 @@ const BlogTipsSection: NextPage<BlogProps> = ({ blogs }) => {
 
   useEffect(() => {
     setCurrentPage(1);
-    setBlogList(blogs);
     let filteredBlog: Blog[] = [];
     if (category == "") return;
-    blogList.map((blog) => {
+    blogs.map((blog) => {
       if (blog.category === category) {
         filteredBlog.push(blog);
       }
@@ -48,13 +47,15 @@ const BlogTipsSection: NextPage<BlogProps> = ({ blogs }) => {
   }, []);
 
   return (
-    <div className="max-w-7xl w-screen pt-5 px-5 xl:px-0">
-      <GradientTitle text="Blog  dan Tips" />
-      <p className="text-white">
+    <div className="max-w-7xl w-screen pt-5">
+      <div className="px-2 xl:px-0">
+        <GradientTitle text="Blog  dan Tips" />
+      </div>
+      <p className="text-white px-2 xl:px-0">
         Di sini, kami membagikan beberapa tips sepatu, artikel fakta dan berita
         yang dapat memberi Anda wawasan.
       </p>
-      <div className="mt-1 gap-1 flex">
+      <div className="mt-1 gap-1 flex overflow-x-scroll pb-2 px-2 xl:px-0">
         <Button
           className="mr-1"
           variant={category == "" ? "default" : "outline"}
