@@ -10,10 +10,10 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   
     return {
       title: post ? post.title : "",
-      description: post ? post.description : "",
+      description: post ? `Baca tulisan dari ${post.author.name} tentang ${post.category} yang berjudul ${post.title}` : "",
       openGraph: {
         title: post ? post.title : "",
-        description: post ? post.description : "",
+        description: post ? post.content : "",
         url: `https://pineleaf.josumaru.my.id/blog/${params.id}`,
         type: "article",
         images: [
