@@ -18,8 +18,13 @@ const PaketKemitraan: NextPage = ({}) => {
                         Paket ini cocok untuk kamu yang baru memulai perjalanan bisnis. Dengan investasi minimal, kamu sudah bisa mendapatkan perlengkapan dasar dan pelatihan cepat untuk memulai bisnis cuci sepatu.
                     </div>
                     <div className="mt-10 md:mt-24 text-2xl md:text-4xl text-center font-bold">
+                        <div className="text-lg line-through">
+                            <span className="relative top-[-4px] md:top-[-10px]">Rp </span>
+                            <span className="relative">4.000.000</span>
+                        </div>
+                        
                         <span className="relative align-top top-[-4px] md:top-[-10px]">Rp </span>
-                        200.000
+                        2.300.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
                         <a href="https://wa.me/6285867942389" target="_blank">
@@ -41,8 +46,12 @@ const PaketKemitraan: NextPage = ({}) => {
                         Paket ini dirancang untuk kamu yang ingin memperluas usaha dengan modal lebih besar. Dilengkapi dengan perlengkapan yang lebih lengkap dan pelatihan mendalam, kamu akan siap bersinar dalam bisnis jasa cuci sepatu.
                     </div>
                     <div className="mt-10 md:mt-20 text-2xl md:text-4xl text-center font-bold">
+                        <div className="text-lg line-through">
+                            <span className="relative top-[-4px] md:top-[-10px]">Rp </span>
+                            <span className="relative">8.000.000</span>
+                        </div>
                         <span className="relative align-top top-[-4px] md:top-[-10px]">Rp </span>
-                        200.000
+                        5.500.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
                         <a href="https://wa.me/6285867942389" target="_blank">
@@ -64,8 +73,12 @@ const PaketKemitraan: NextPage = ({}) => {
                         Paket paling lengkap untuk kamu yang ingin menjadi pionir di industri ini. Dengan perlengkapan bisnis full-set, pelatihan eksklusif, dan strategi bisnis yang terbukti, paket ini adalah pilihan tepat bagi mereka yang ingin menciptakan jejak besar dalam dunia bisnis jasa cuci sepatu.
                     </div>
                     <div className="mt-10 md:mt-16 text-2xl md:text-4xl text-center font-bold">
+                        <div className="text-lg line-through">
+                            <span className="relative top-[-4px] md:top-[-10px]">Rp </span>
+                            <span className="relative">15.000.000</span>
+                        </div>
                         <span className="relative align-top top-[-4px] md:top-[-10px]">Rp </span>
-                        200.000
+                        9.500.000
                     </div>
                     <div className="flex items-center justify-center mt-6">
                         <a href="https://wa.me/6285867942389" target="_blank">
