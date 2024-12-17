@@ -36,8 +36,12 @@ const Page: NextPage<Props> = ({}) => {
     setIsLoading(true);
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/get-all-blog");
-        const catRes = await fetch("/api/category");
+        const res = await fetch("/api/get-all-blog",{
+          cache: "no-cache",
+        });
+        const catRes = await fetch("/api/category", {
+          cache: "no-cache",
+        });
         const catData = await catRes.json();
         const data = await res.json();
         setBlogs(data);

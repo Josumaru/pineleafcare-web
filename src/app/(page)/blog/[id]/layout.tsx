@@ -1,10 +1,12 @@
 export async function generateMetadata({ params }: { params: { id: string } }) {
     // Fetch data dari API
-    const response = await fetch(`https://pineleaf.josumaru.my.id/api/get-all-blog`);
+    const response = await fetch(`https://pineleaf.josumaru.my.id/api/get-all-blog`, {
+      cache: "no-cache",
+    });
     const data = await response.json();
   
     // Cari post berdasarkan id
-    const post = data.find((item: any) => item.id === params.id);
+    const post = await data.find(async (item: any) => await item.id === params.id);
   
     return {
       title: post ? post.title : "",

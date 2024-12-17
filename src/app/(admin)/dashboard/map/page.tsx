@@ -31,7 +31,6 @@ import { ComboBox } from "@/components/dashboard/ComboBox";
 
 interface Props {}
 
-export const dynamic = "force-dynamic"
 
 type MarkerData = {
   id: number;
@@ -93,6 +92,7 @@ const Page: NextPage<Props> = ({}) => {
         city != ""
       ) {
         response = await fetch("/api/marker", {
+          cache: "no-cache",
           method: "PUT",
           body: formData,
         });
