@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function GET() {
   const supabase = createClient();
   try {
     const { error } = await (await supabase).from("keep_alive").insert({});
