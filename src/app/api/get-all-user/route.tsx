@@ -46,7 +46,7 @@ export async function GET(req: Request): Promise<Response> {
         image: users.image,
         banner: users.banner,
         verified: users.verified,
-        postCount: sql`(SELECT COUNT(*) FROM ${blogs} WHERE ${blogs.author_id} = ${users.id})`.as<number>(),
+        postCount: sql`(SELECT COUNT(*) FROM ${blogs} WHERE ${blogs.authorId} = ${users.id})`.as<number>(),
       })
       .from(users);
 

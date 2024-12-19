@@ -2,6 +2,9 @@
 import { v4 as uuidv4 } from "uuid";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
+import { db } from "@/db/db";
+import { markers } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
 
@@ -21,8 +24,6 @@ async function isUserAdmin(): Promise<boolean> {
 // API handler untuk menambahkan marker baru ke tabel `markers`
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
-    const supabase = createClient();
-
     // Cek apakah pengguna adalah admin
     const isAdmin = await isUserAdmin();
     if (!isAdmin) {
@@ -63,14 +64,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     };
 
     // Masukkan data ke tabel `markers`
-    const { error } = await (await supabase).from("markers").insert(newMarker);
+    
+    await db.insert(markers).values(newMarker)
 
-    if (error) {
-      return NextResponse.json(
-        { success: false, message: "Failed to add marker." },
-        { status: 500 }
-      );
-    }
 
     return NextResponse.json(
       { success: true, message: "Marker added successfully." },
@@ -87,18 +83,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
 export async function GET(): Promise<NextResponse> {
     try {
-      const supabase = createClient();
-  
-      // Ambil data marker dari tabel `markers`
-      const { data, error } = await (await supabase).from("markers").select("*");
-  
-      if (error) {
-        return NextResponse.json(
-          { success: false, message: "Failed to fetch markers." },
-          { status: 500 }
-        );
-      }
 
+      const data = await db.select().from(markers)
   
       return NextResponse.json(
         { success: true, data },
@@ -116,7 +102,6 @@ export async function GET(): Promise<NextResponse> {
 // API handler untuk mengedit marker di tabel `markers`
 export async function PUT(req: NextRequest): Promise<NextResponse> {
   try {
-    const supabase = createClient();
 
     // Cek apakah pengguna adalah admin
     const isAdmin = await isUserAdmin();
@@ -148,17 +133,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
     }
 
     // Update data marker
-    const { error } = await (await supabase)
-      .from("markers")
-      .update({ lat, lng, title, desc, loc, province, city })
-      .eq("id", id);
-
-    if (error) {
-      return NextResponse.json(
-        { success: false, message: "Failed to update marker." },
-        { status: 500 }
-      );
-    }
+    await db.update(markers).set({ lat, lng, title, desc, loc, province, city }).where(eq(markers.id, id))
 
     return NextResponse.json(
       { success: true, message: "Marker updated successfully." },
@@ -174,7 +149,6 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
 
 export async function DELETE(req: NextRequest): Promise<NextResponse> {
   try {
-    const supabase = createClient();
 
     // Cek apakah pengguna adalah admin
     const isAdmin = await isUserAdmin();
@@ -197,14 +171,7 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
     }
 
     // Hapus marker dari tabel
-    const { error } = await (await supabase).from("markers").delete().eq("id", id);
-
-    if (error) {
-      return NextResponse.json(
-        { success: false, message: "Failed to delete marker." },
-        { status: 500 }
-      );
-    }
+    await db.delete(markers).where(eq(markers.id, id))
 
     return NextResponse.json(
       { success: true, message: "Marker deleted successfully." },

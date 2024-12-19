@@ -32,7 +32,7 @@ export async function POST(req: Request): Promise<Response> {
     const title = formData.get("title")?.toString() || "";
     const content = formData.get("content")?.toString() || "";
     const category = formData.get("category")?.toString() || "Tech";
-    const author_id = id || "";
+    const authorId = id || "";
     const bid = uuidv4();
 
     const image = formData.get("image") as File | null;
@@ -45,7 +45,7 @@ export async function POST(req: Request): Promise<Response> {
         title,
         content,
         category,
-        author_id,
+        authorId,
         image: imageUrl,
       };
 

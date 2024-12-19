@@ -51,7 +51,7 @@ async function isAdminOrOwner(
     .from(blogs)
     .where(eq(blogs.id, blogId))
     .limit(0);
-  if (blog && blog[0].author_id === userId) {
+  if (blog && blog[0].authorId === userId) {
     return true;
   }
 
