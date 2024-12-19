@@ -1,6 +1,8 @@
 import { Blog } from "@/types/blog";
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
@@ -39,7 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "always",
       priority: 0.8,
     },
-    ...(await generateBlogPostsSitemapObjects())
+    ...(await generateBlogPostsSitemapObjects()),
   ];
 }
 

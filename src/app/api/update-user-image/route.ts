@@ -1,4 +1,7 @@
+import { db } from "@/db/db";
+import { users } from "@/db/schema";
 import { createClient } from "@/utils/supabase/server";
+import { eq } from "drizzle-orm";
 export async function POST(req: Request) {
   const supabase = createClient();
   const formData = await req.formData();
@@ -39,8 +42,7 @@ export async function POST(req: Request) {
     }
 
     const image = (await supabase).storage.from("banner").getPublicUrl(data.path).data.publicUrl;
-    await (await supabase).from("users").update({ banner: image }).eq("id", user.id);
-  
+    await db.update(users).set({banner : image}).where(eq(users.id, user.id))
     return new Response(JSON.stringify({ banner: image }), { status: 200 });
   } else if(bucket == "profile"){
     const currentProfile = (await supabase).from("users").select("image").eq("id", user.id).single()
@@ -51,7 +53,7 @@ export async function POST(req: Request) {
     }
 
     const image = (await supabase).storage.from("profile").getPublicUrl(data.path).data.publicUrl;
-    await (await supabase).from("users").update({ image: image }).eq("id", user.id);;
+    await db.update(users).set({image : image}).where(eq(users.id, user.id))
   
     return new Response(JSON.stringify({ image: image }), { status: 200 });
   } else {
