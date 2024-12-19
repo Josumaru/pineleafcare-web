@@ -1,0 +1,9 @@
+{
+    "crons": [
+      {
+        "method": "POST",
+        "path": "/api/keep-alive",
+        "schedule": "* * * * *"
+      }
+    ]
+  }

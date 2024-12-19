@@ -34,6 +34,12 @@ export const blogs = table("blogs", {
   author_id: t.uuid().notNull(),
 }).enableRLS();
 
+export const keepAlive = table("keep_alive", {
+  id: t.uuid().primaryKey(),
+  createdAt: t.timestamp().defaultNow(),
+});
+
+
 export const users = table("users", {
   id: t.uuid().primaryKey(),
   name: t.varchar({ length: 256 }).notNull(),
