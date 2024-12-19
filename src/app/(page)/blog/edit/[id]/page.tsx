@@ -35,6 +35,7 @@ const Page: NextPage<Props> = ({ params }) => {
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [category, setCategory] = useState<string | null>(null);
+  const [categoryBlogs, setCategoryBlogs] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [value, setValue] = useState<Content>("");
   const [open, setOpen] = useState(false);
@@ -81,6 +82,15 @@ const Page: NextPage<Props> = ({ params }) => {
       fetchBlog();
     }
   }, [id]);
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const res = await fetch("/api/category");
+      const data = await res.json();
+      const categories = await data.data.map((item:any) => item.name)
+      setCategoryBlogs(categories);
+    }
+    fetchCategory();
+  }, [])
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -156,21 +166,6 @@ const Page: NextPage<Props> = ({ params }) => {
     setLoading(false);
   };
 
-  const categoryBlogs = [
-    "Kecantikan",
-    "Kebersihan",
-    "Tips",
-    "Kuliner",
-    "Kesehatan",
-    "Olahraga",
-    "Bisnis",
-    "Lifestyle",
-    "Sosial",
-    "Teknologi",
-    "Edukasi",
-    "Pendidikan",
-    "Kesehatan",
-  ];
 
   if (
     image == null ||

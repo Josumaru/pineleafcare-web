@@ -6,6 +6,7 @@ export const metadata: Metadata = {
     "Selamat datang di Pineleafcare! Kami adalah pionir solusi perawatan sepatu, tas, dan stroller di Indonesia. Temukan layanan terbaik dan peluang bisnis bersama kami.",
   keywords: [
     "pineleafcare",
+    "pineleaf",
     "beranda pineleafcare",
     "waralaba cuci sepatu",
     "franchise perawatan sepatu",
