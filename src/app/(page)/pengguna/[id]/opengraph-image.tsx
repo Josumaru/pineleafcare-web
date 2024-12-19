@@ -1,4 +1,17 @@
 import { ImageResponse } from "next/og";
+import axios from 'axios'
+import sharp from 'sharp';
+
+const getImageBase64 = async (url: string) => {
+  return axios.get<ArrayBuffer>(url, {
+    responseType: 'arraybuffer',
+  }).then(async (res) => {
+    const buffer = await sharp(res.data).toFormat('png').toBuffer()
+    return {
+      url: `data:${'image/png'};base64,${buffer.toString('base64')}`,
+    };
+  })
+}
 
 export const alt = "Pineleaf Blog";
 export const size = {
@@ -8,12 +21,17 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function Image({ params }: { params: { id: string } }) {
-  const response = await fetch(`https://pineleaf.josumaru.my.id/api/get-user?id=${params.id}`, {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/get-user?id=${params.id}`,
+    {
+      cache: "no-store",
+    }
+  );
   const data = await response.json();
+  const imageToBase64 = await getImageBase64(data.image)
+  const image = imageToBase64.url;
 
-  if (!data) {
+  if (!data && !image) {
     return new ImageResponse(
       (
         <div
@@ -54,8 +72,10 @@ export default async function Image({ params }: { params: { id: string } }) {
         }}
       >
         <img
-          src={data.banner}
-          alt="Blog Image"
+          width={720}
+          height={720}
+          src={image}
+          alt={data.name}
           style={{
             width: "100%",
             height: "100%",

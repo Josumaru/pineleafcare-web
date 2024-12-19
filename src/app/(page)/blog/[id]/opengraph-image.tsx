@@ -1,5 +1,17 @@
 import { ImageResponse } from "next/og";
+import axios from 'axios'
+import sharp from 'sharp';
 
+const getImageBase64 = async (url: string) => {
+  return axios.get<ArrayBuffer>(url, {
+    responseType: 'arraybuffer',
+  }).then(async (res) => {
+    const buffer = await sharp(res.data).toFormat('png').toBuffer()
+    return {
+      url: `data:${'image/png'};base64,${buffer.toString('base64')}`,
+    };
+  })
+}
 export const alt = "Pineleaf Blog";
 export const size = {
   width: 1200,
@@ -9,17 +21,20 @@ export const contentType = "image/png";
 
 export default async function Image({ params }: { params: { id: string } }) {
   const responses = await fetch(
-    `https://pineleaf.josumaru.my.id/api/get-all-blog/`, {
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/get-all-blog/`, {
       cache: "no-store",
     }
   );
   const data = await responses.json();
   let post;
+  let image;
 
   // Cari post berdasarkan ID
   for (let i = 0; i < data.length; i++) {
     if (data[i].id === params.id) {
       post = data[i];
+      const imageToBase64 = await getImageBase64(post.image);
+      image = imageToBase64.url;
       break;
     }
   }
@@ -65,8 +80,8 @@ export default async function Image({ params }: { params: { id: string } }) {
         }}
       >
         <img
-          src={post.image}
-          alt="Blog Image"
+          src={image}
+          alt={post.title}
           style={{
             width: "100%",
             height: "100%",

@@ -1,7 +1,7 @@
 export async function generateMetadata({ params }: { params: { id: string } }) {
   
     // Fetch data dari API
-    const response = await fetch(`https://pineleaf.josumaru.my.id/api/get-user?id=${params.id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-user?id=${params.id}`, {
       cache: "no-store",
     });
     const data = await response.json();
@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
       openGraph: {
         title: data ? data.name : "Pineleaf",
         description: data ? `Ikuti Pengguna ${data.name ?? "Pineleaf"} dengan ${data.postCount ?? 0} tulisan` : "",
-        url: `https://pineleaf.josumaru.my.id/pengguna/${params.id}`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/pengguna/${params.id}`,
         type: "article",
         images: [
           {
