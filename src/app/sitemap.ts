@@ -39,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "always",
       priority: 0.8,
     },
-    // ...(await generateBlogPostsSitemapObjects())
+    ...(await generateBlogPostsSitemapObjects())
   ];
 }
 
