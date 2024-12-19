@@ -1,52 +1,178 @@
-import { pgTable as table } from "drizzle-orm/pg-core";
-import * as t from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  pgPolicy,
+  uuid,
+  varchar,
+  boolean,
+  numeric,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 
-export const products = table("products", {
-  id: t.uuid().primaryKey(),
-  page: t.numeric().notNull(),
-  url: t.varchar({ length: 512 }),
+export const users = pgTable(
+  "users",
+  {
+    id: uuid().primaryKey().notNull(),
+    name: varchar({ length: 256 }).notNull(),
+    image: varchar({ length: 512 }),
+    banner: varchar({ length: 512 }),
+    verified: boolean().default(false),
+  },
+  (table) => {
+    return {
+      enableReadAccessForAllUsers: pgPolicy(
+        "Enable read access for all users",
+        { as: "permissive", for: "select", to: ["public"], using: sql`true` }
+      ),
+      enableInsertForAuthenticatedUsersOnly: pgPolicy(
+        "Enable insert for authenticated users only",
+        { as: "permissive", for: "insert", to: ["authenticated"] }
+      ),
+      enableDeleteForUsersBasedOnUserId: pgPolicy(
+        "Enable delete for users based on user_id",
+        { as: "permissive", for: "update", to: ["public"] }
+      ),
+    };
+  }
+);
+
+export const categories = pgTable(
+  "categories",
+  {
+    id: uuid().primaryKey().notNull(),
+    name: varchar({ length: 128 }).notNull(),
+  },
+  (table) => {
+    return {
+      enableInsertForAuthenticatedUsersOnly: pgPolicy(
+        "Enable insert for authenticated users only",
+        {
+          as: "permissive",
+          for: "insert",
+          to: ["authenticated"],
+          withCheck: sql`true`,
+        }
+      ),
+      enableDeleteForAuthenticatedUsersOnly: pgPolicy(
+        "Enable delete for authenticated users only",
+        { as: "permissive", for: "delete", to: ["authenticated"] }
+      ),
+      enableReadAccessForAllUsers: pgPolicy(
+        "Enable read access for all users",
+        { as: "permissive", for: "select", to: ["public"] }
+      ),
+    };
+  }
+);
+
+export const products = pgTable(
+  "products",
+  {
+    id: uuid().primaryKey().notNull(),
+    page: numeric().notNull(),
+    url: varchar({ length: 512 }),
+  },
+  (table) => {
+    return {
+      public: pgPolicy("public", {
+        as: "permissive",
+        for: "select",
+        to: ["public"],
+        using: sql`true`,
+      }),
+      enableInsertForAuthenticatedUsersOnly: pgPolicy(
+        "Enable insert for authenticated users only",
+        { as: "permissive", for: "insert", to: ["authenticated"] }
+      ),
+      enableDelForAuthenticatedUsersOnly: pgPolicy(
+        "Enable del for authenticated users only",
+        { as: "permissive", for: "delete", to: ["authenticated"] }
+      ),
+      enableReadAccessForAllUsers: pgPolicy(
+        "Enable read access for all users",
+        { as: "permissive", for: "update", to: ["public"] }
+      ),
+    };
+  }
+);
+
+export const markers = pgTable(
+  "markers",
+  {
+    id: uuid().primaryKey().notNull(),
+    lat: numeric().notNull(),
+    lng: numeric().notNull(),
+    title: varchar({ length: 512 }),
+    desc: varchar({ length: 512 }),
+    loc: varchar({ length: 512 }).notNull(),
+    province: varchar({ length: 512 }),
+    city: varchar({ length: 512 }),
+  },
+  (table) => {
+    return {
+      readAccess: pgPolicy("read access", {
+        as: "permissive",
+        for: "select",
+        to: ["public"],
+        using: sql`true`,
+      }),
+      enableInsertForAuthenticatedUsersOnly: pgPolicy(
+        "Enable insert for authenticated users only",
+        { as: "permissive", for: "insert", to: ["authenticated"] }
+      ),
+      enableDeleteForAuthenticatedUsersOnly: pgPolicy(
+        "Enable delete for authenticated users only",
+        { as: "permissive", for: "delete", to: ["authenticated"] }
+      ),
+      enableUpdateForAuthenticatedUsersOnly: pgPolicy(
+        "Enable update for authenticated users only",
+        { as: "permissive", for: "update", to: ["authenticated"] }
+      ),
+    };
+  }
+);
+
+export const blogs = pgTable(
+  "blogs",
+  {
+    id: uuid().primaryKey().notNull(),
+    title: varchar({ length: 256 }).notNull(),
+    content: text().notNull(),
+    image: varchar({ length: 512 }),
+    createdAt: timestamp({ mode: "string" }).defaultNow().notNull(),
+    updatedAt: timestamp({ mode: "string" }).defaultNow().notNull(),
+    category: varchar().notNull(),
+    authorId: uuid("author_id").notNull(),
+  },
+  (table) => {
+    return {
+      enableDeleteForUsersBasedOnUserId: pgPolicy(
+        "Enable delete for users based on user_id",
+        {
+          as: "permissive",
+          for: "delete",
+          to: ["public"],
+          using: sql`(( SELECT auth.uid() AS uid) = id)`,
+        }
+      ),
+      enableReadAccessForAllUsers: pgPolicy(
+        "Enable read access for all users",
+        { as: "permissive", for: "select", to: ["public"] }
+      ),
+      enableInsertForAuthenticatedUsersOnly: pgPolicy(
+        "Enable insert for authenticated users only",
+        { as: "permissive", for: "insert", to: ["authenticated"] }
+      ),
+      enableUpdateForUsersBasedOnEmail: pgPolicy(
+        "Enable update for users based on email",
+        { as: "permissive", for: "update", to: ["public"] }
+      ),
+    };
+  }
+);
+
+export const keepAlive = pgTable("keep_alive", {
+  id: uuid().primaryKey(),
+  createdAt: timestamp().defaultNow(),
 });
-
-export const markers = table("markers", {
-  id: t.uuid().primaryKey(),
-  lat: t.numeric().notNull(),
-  lng: t.numeric().notNull(),
-  title: t.varchar({ length: 512 }),
-  desc: t.varchar({ length: 512 }),
-  loc: t.varchar({ length: 512 }).notNull(),
-  province: t.varchar({ length: 512 }),
-  city: t.varchar({ length: 512 }),
-});
-
-export const categories = table("categories", {
-  id: t.uuid().primaryKey(),
-  name: t.varchar({ length: 128 }).notNull(),
-});
-
-export const blogs = table("blogs", {
-  id: t.uuid().primaryKey(),
-  title: t.varchar({ length: 256 }).notNull(),
-  content: t.text().notNull(),
-  image: t.varchar({ length: 512 }),
-  createdAt: t.timestamp().defaultNow().notNull(),
-  updatedAt: t.timestamp().defaultNow().notNull(),
-  category: t.varchar().notNull(),
-  author_id: t.uuid().notNull(),
-}).enableRLS();
-
-export const keepAlive = table("keep_alive", {
-  id: t.uuid().primaryKey(),
-  createdAt: t.timestamp().defaultNow(),
-});
-
-
-export const users = table("users", {
-  id: t.uuid().primaryKey(),
-  name: t.varchar({ length: 256 }).notNull(),
-  image: t.varchar({ length: 512 }),
-  banner: t.varchar({ length: 512 }),
-  verified: t.boolean().default(false),
-}).enableRLS();
-
-export type InsertBlogType = typeof blogs.$inferInsert;
-export type SelectBlogType = typeof blogs.$inferSelect;
