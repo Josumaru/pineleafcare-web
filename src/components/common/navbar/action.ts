@@ -21,7 +21,7 @@ export const getUser = async (): Promise<User | null> => {
     const postCountResult = await db
       .select({ count: sql<number>`COUNT(*)` })
       .from(blogs)
-      .where(eq(blogs.author_id, data.user.id));
+      .where(eq(blogs.authorId, data.user.id));
 
     const postCount = postCountResult[0]?.count ?? 0;
 

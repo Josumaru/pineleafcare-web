@@ -18,28 +18,11 @@ async function isUserAdmin(): Promise<boolean> {
   const role = data.user.app_metadata?.role;
   return role === "admin";
 }
-// const isAdmin = await isUserAdmin();
-
-// if (!isAdmin) { 
-//     return NextResponse.json({
-//       success: false,
-//       message: "You don't have permission to perform this action.",
-//     },
-//     {
-//       status: 403,
-//     }
-//   );
-// }
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
-    const supabase = createClient();
-    const { data, error } = await (await supabase)
-      .from("categories")
-      .select("*");
-    if (error) {
-      throw new Error();
-    }
+  
+    const data = await db.select().from(categories);
     return NextResponse.json({ success: true, data }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
@@ -51,7 +34,10 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
-    const supabase = createClient();
+    const isAdmin = await isUserAdmin();
+    if (!isAdmin) {
+      throw new Error();
+    }
     const formData = req.formData();
     const id = v4();
     const category = (await formData).get("name") as string;
@@ -61,7 +47,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         { status: 400 }
       );
     }
-    const data = await db.insert(categories).values({id: id, name: category})
+    const data = await db.insert(categories).values({ id: id, name: category });
     return NextResponse.json({ success: true, data }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
@@ -73,6 +59,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
 export async function PUT(req: NextRequest): Promise<NextResponse> {
   try {
+    const isAdmin = await isUserAdmin();
+    if (!isAdmin) {
+      throw new Error();
+    }
     const supabase = createClient();
     const formData = req.formData();
     const id = (await formData).get("id");
@@ -98,6 +88,10 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
 
 export async function DELETE(req: NextRequest): Promise<NextResponse> {
   try {
+    const isAdmin = await isUserAdmin();
+    if (!isAdmin) {
+      throw new Error();
+    }
     const supabase = createClient();
     const formData = req.formData();
     const id = (await formData).get("id") as string;

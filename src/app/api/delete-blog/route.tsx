@@ -26,7 +26,7 @@ async function isAdminOrOwner(userId: string, blogId: string): Promise<boolean> 
     .where(eq(blogs.id, blogId))
     .limit(1);
 
-  if (blog && blog[0]?.author_id === userId) {
+  if (blog && blog[0]?.authorId === userId) {
     return true;
   }
 

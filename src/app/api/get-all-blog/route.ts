@@ -12,7 +12,7 @@ export async function GET(req: Request): Promise<Response> {
         title: blogs.title,
         content: blogs.content,
         image: blogs.image,
-        userId: blogs.author_id,
+        userId: blogs.authorId,
         createdAt: blogs.createdAt,
         updatedAt: blogs.updatedAt,
         category: blogs.category,
@@ -22,7 +22,7 @@ export async function GET(req: Request): Promise<Response> {
         },
       })
       .from(blogs)
-      .leftJoin(users, eq(blogs.author_id, users.id))
+      .leftJoin(users, eq(blogs.authorId, users.id))
       .orderBy(desc(blogs.createdAt));
     return new Response(JSON.stringify(blogData), { status: 200,
        headers: {

@@ -28,7 +28,7 @@ export async function GET(req: Request) {
         count: sql`COUNT(*)`.as<number>(),
       })
       .from(blogs)
-      .where(eq(blogs.author_id, id));
+      .where(eq(blogs.authorId, id));
 
     const postCount = postCountResult[0]?.count ?? 0;
 
